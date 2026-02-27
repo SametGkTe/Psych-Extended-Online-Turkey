@@ -57,6 +57,11 @@ class Achievements {
 		createAchievement('debugger',				{name: "Debugger", description: "Beat the \"Test\" Stage from the Chart Editor.", hidden: true});
 
 		createAchievement('1000combo',				{name: "It's over 1000!", description: "Completed a Song with combo higher than 1000.", hidden: true});
+		#if TURKIYE_BUILD
+		createAchievement('turkiye',				{name: "NE MUTLU TÜRKÜM DİYENE!", description: "AS BAYRAKLI AS!", hidden: true});
+		createAchievement('peto',				{name: "Oynadığın İçin Teşekkürler! :D", description: "Psych Engine Türkiye Online'ın Oyuncularından Ol."});
+		createAchievement('abonem',				{name: "Abonem Kalmadı!", description: "Abonelerin Hepsini Öldürdün!", hidden: true});
+		#end
 
 		//dont delete this thing below
 		_originalLength = _sortID + 1;

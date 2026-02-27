@@ -4,6 +4,13 @@ import flixel.addons.ui.FlxUIState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxState;
 
+#if TOUCH_CONTROLS
+import mobile.MobileControlManager;
+import mobile.objects.FunkinMobilePad;
+import mobile.objects.FunkinHitbox;
+import mobile.objects.FunkinJoyStick;
+#end
+
 class MusicBeatState extends FlxUIState
 {
 	public var variables:Map<String, Dynamic> = new Map<String, Dynamic>();

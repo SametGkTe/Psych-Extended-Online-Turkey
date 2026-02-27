@@ -20,13 +20,13 @@ class OnlineState extends MusicBeatState {
 	var items:FlxTypedSpriteGroup<FlxText>;
 
 	var itms:Array<String> = [
-        "JOIN",
-        "HOST",
-        "FIND",
-		"OPTIONS",
-		"LEADERBOARD",
-		"MOD DOWNLOADER"
-    ];
+		Language.getText("JOIN"),
+		Language.getText("HOST"),
+		Language.getText("FIND"),
+		Language.getText("OPTIONS"),
+		Language.getText("LEADERBOARD"),
+		Language.getText("MOD DOWNLOADER")
+	];
 
 	// var networkPlayer:FlxText;
 	// var networkBg:FlxSprite;
@@ -78,9 +78,9 @@ class OnlineState extends MusicBeatState {
     }
 
 	function getItemName(item:String) {
-		if (curSelected == 0 && item == "JOIN" && inputWait)
+		if (curSelected == 0 && Language.getText("JOIN") && inputWait)
 		{
-			return "JOIN CODE: " + inputString;
+			return Language.getText("JOIN CODE: ") + inputString;
 		}
 		return item;
 	}
@@ -231,7 +231,7 @@ class OnlineState extends MusicBeatState {
 		playersOnline = new FlxText(0, 100);
 		playersOnline.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		playersOnline.alpha = 0.7;
-		playersOnline.text = "Fetching...";
+		playersOnline.text = Language.getText("Fetching...");
 		playersOnline.screenCenter(X);
 		add(playersOnline);
 
@@ -291,12 +291,12 @@ class OnlineState extends MusicBeatState {
 			var data = FunkinNetwork.fetchFront();
 			Waiter.put(() -> {
 				if (data == null) {
-					playersOnline.text = "NETWORK OFFLINE";
+					playersOnline.text =  Language.getText("NETWORK OFFLINE");
 					// networkPlayer.visible = false;
 					// networkBg.visible = false;
 				}
 				else {
-					playersOnline.text = 'Players Online: ' + data.online;
+					playersOnline.text = Language.getText("Players Online: ") + data.online;
 					availableRooms.text = 'Available Rooms: ' + data.rooms;
 					frontMessage.text = data.sez;
 					frontMessage.y = FlxG.height - frontMessage.height - 20;
@@ -364,14 +364,14 @@ class OnlineState extends MusicBeatState {
 
 			if (controls.ACCEPT || (FlxG.mouse.justPressed && mouseInItems)) {
 				switch (itms[curSelected].toLowerCase()) {
-					case "join":
+					case 0: //JOIN
 						FlxG.stage.window.textInputEnabled = true;
 						inputWait = true;
-					case "find":
+					case 1: //FIND
 						disableInput = true;
 						// FlxG.openURL(GameClient.serverAddress + "/rooms");
 						FlxG.switchState(() -> new FindRoomState());
-					case "host":
+					case 2: //HOST
 						var count:Float = 0;
 						for (mod in Mods.getModDirectories()) {
 							var url = OnlineMods.getModURL(mod);
@@ -380,17 +380,17 @@ class OnlineState extends MusicBeatState {
 						}
 
 						if (count > 0) {
-							Alert.alert('WARNING', count + ' of your mods do not have a valid URL set!');
+							Alert.alert(Language.getText('WARNING'), count + Language.getText(' of your mods do not have a valid URL set!'));
 						}
 
 						disableInput = true;
 						GameClient.createRoom(GameClient.serverAddress, onRoomJoin);
-					case "options":
+					case 3: //OPTIONS
 						disableInput = true;
 						FlxG.switchState(() -> new OnlineOptionsState());
-					case "leaderboard":
+					case 4: //LEADERBOARD
 						openSubState(new TopPlayerSubstate());
-					case "mod downloader":
+					case 5: //MOD DOWNLOADER
 						disableInput = true;
 						FlxG.switchState(() -> new DownloaderState());
 				}
@@ -417,7 +417,7 @@ class OnlineState extends MusicBeatState {
 					discord.animation.play("active");
 					discord.offset.set(2, 2);
 
-					itemDesc.text = "Join Psych Online Discord Server!";
+					itemDesc.text = Language.getText("Join Psych Online Discord Server!");
 					itemDesc.screenCenter(X);
 
 					if (FlxG.mouse.justPressed) {
@@ -434,7 +434,7 @@ class OnlineState extends MusicBeatState {
 					github.alpha = 1;
 					github.animation.play("active");
 
-					itemDesc.text = "Documentation, FAQ and the Source Code!";
+					itemDesc.text = Language.getText("Documentation, FAQ and the Source Code!");
 					itemDesc.screenCenter(X);
 
 					if (FlxG.mouse.justPressed) {
@@ -444,7 +444,7 @@ class OnlineState extends MusicBeatState {
 							case 'codeberg':
 								RequestSubstate.requestURL("https://codeberg.org/Snirozu/Funkin-Psych-Online/wiki", true);
 							default:
-								Alert.alert('Offline.');
+								Alert.alert(Language.getText('Offline.'));
 						}
 					}
 				}
@@ -458,7 +458,7 @@ class OnlineState extends MusicBeatState {
 						bsky.alpha = 1;
 						bsky.animation.play("active");
 
-						itemDesc.text = "Follow the official Psych Online Bluesky account!";
+						itemDesc.text = Language.getText("Follow the official Psych Online Bluesky account!");
 						itemDesc.screenCenter(X);
 
 						if (FlxG.mouse.justPressed) {
@@ -476,7 +476,7 @@ class OnlineState extends MusicBeatState {
 						twitter.animation.play("active");
 						twitter.offset.set(5, 5);
 
-						itemDesc.text = "Follow the official Psych Online Twitter account!";
+						itemDesc.text = Language.getText("Follow the official Psych Online Twitter account!");
 						itemDesc.screenCenter(X);
 
 						if (FlxG.mouse.justPressed) {
@@ -505,17 +505,17 @@ class OnlineState extends MusicBeatState {
 
 		switch (curSelected) {
 			case 0:
-				itemDesc.text = "Join a room using a room code";
+				itemDesc.text = Language.getText("Join a room using a room code");
 			case 1:
-				itemDesc.text = "Creates a room";
+				itemDesc.text = Language.getText("Creates a room");
 			case 2:
-				itemDesc.text = "Opens a list of all available public rooms";
+				itemDesc.text = Language.getText("Opens a list of all available public rooms");
 			case 3:
-				itemDesc.text = "Psych Online options, configure stuff here!";
+				itemDesc.text = Language.getText("Psych Online options, configure stuff here!");
 			case 4:
-				itemDesc.text = "The Funkin Points Leaderboard!";
+				itemDesc.text = Language.getText("The Funkin Points Leaderboard!");
 			case 5:
-				itemDesc.text = "Download mods from Gamebanana here!";
+				itemDesc.text = Language.getText("Download mods from Gamebanana here!");
 		}
 		itemDesc.screenCenter(X);
 
@@ -588,7 +588,7 @@ class OnlineState extends MusicBeatState {
 
 		if (inputString.length >= 0) {
 			switch (itms[curSelected].toLowerCase()) {
-				case "join":
+				case 0: // JOIN
 					disableInput = true;
 					FlxG.stage.window.textInputEnabled = false;
 					if (daCoomCode.toLowerCase() == "adachi") {

@@ -39,6 +39,15 @@ import states.TitleState;
 	public var hitboxLocation:String = 'Bottom';
 	public var hitboxMode:String = 'Normal (New)';
 	public var mobileExtraKeyReturns:Array<String> = ['SHIFT', 'SPACE', 'Q', 'E'];
+	
+	#if TURKIYE_BUILD
+	// PET AYARLARI
+	public var petwatermark:Bool = true;
+	public var petloadingscreen:Bool = true;
+	public var petwatermarklogo:String = 'ONLINE';
+	public var petloadingscreenimage:String = 'ONLINE';
+	public var disableIntroVideo:Bool = false;
+	#end
 
 	public var downScroll:Bool = false;
 	public var middleScroll:Bool = false;
