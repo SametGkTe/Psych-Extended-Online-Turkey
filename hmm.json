@@ -6,12 +6,6 @@
       "version": "2.6.0"
     },
     {
-      "name": "lime",
-      "type": "git",
-      "ref": "main",
-      "url": "https://github.com/ArkoseLabsOfficial/lime-termux"
-    },
-    {
       "name": "openfl",
       "type": "haxelib",
       "version": "9.3.3"
