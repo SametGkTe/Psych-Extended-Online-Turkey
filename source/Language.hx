@@ -113,7 +113,7 @@ class Language {
 		"Play as Opponent"          => "Rakip Olarak Oyna",
 		"No Hurt Notes"             => "Hasar Veren Notaları Sil",
 	
-		//Reset Score SubState
+		// Reset Score SubState
 		"Reset the score of"             => "Bu Şarkının Skorunu Sıfırlamak Istiyormusunuz?:",
 		"Yes"		=> "Evet",
 		"No"		=> "Hayır",
@@ -134,7 +134,6 @@ class Language {
 		"ACCURACY" => "DOĞRULUK",
 		"RANK" => "RÜTBE",
 		"RANKS" => "RÜTBELER",
-		
 		"PERSONAL BEST" => "EN İYİ SKOR",
 		"PROTECT YO NUTS BOYFRIEND"       => "SOMUNLARINI KORU BOYFRIEND",
 		"DON'T STOP BOYFRIEND"            => "DURMA BOYFRIEND",
@@ -149,7 +148,7 @@ class Language {
 		"COME TO BRAZIL BOYFRIEND"        => "BAĞCILARA GEL BOYFRIEND",
 		"FUNK THEIR BRAINS OUT BOYFRIEND" => "TURNUVALARA HAZIRLAN BOYFRIEND",
 		
-		// Graphics Settings
+		// Grafik Ayarları
 		"Graphics and Performance" => "Grafikler ve Performans",
 		"Graphics Settings Menu" => "Grafik Ayarları Menüsü",
 		"Low Quality" => "Düşük Kalite",
@@ -279,9 +278,7 @@ class Language {
 		"RESET SCORE"             => "SKORU SIFIRLA",
 		"LEADERBOARD"             => "LiDERLiK TABLOSU",
 		"< ALL TIME >"            => "< HER ZAMAN >",
-		"PLAYER"            => "OYUNCU",
 		"LOADING"                 => "YÜKLENİYOR",
-		"LOADING..."                 => "YÜKLENİYOR",
 		"FlashingState.warnText"  => "Hey, dikkat et!\n
 			Bu Oyun, bazı yanıp sönen ışıklar içeriyor!\n
 			Flaşları kapatmak veya Ayarlar'a gitmek için %{1}% tuşuna basın.\n
@@ -298,7 +295,7 @@ class Language {
 		"INSANE" => "ÇILGIN",
 		"DEATH" => "ÖLÜM",
 
-		//Ayarlar
+		// Ayarlar
 		"Note Colors" => "Nota Renkleri",
 		"Controls" => "Kontroller",
 		"Adjust Delay and Combo" => "Gecikme ve Kombo",
@@ -307,7 +304,7 @@ class Language {
 		"Gameplay" => "Oynanış",
 		"Mobile" => "Mobil Ayarlar",
 
-		//Mobil Ayarlar
+		// Mobil Ayarlar
 		"MobilePad Opacity" => "MobilePad Opaklığı",
 		"Selects the opacity for the mobile buttons (careful not to put it at 0 and lose track of your buttons)." => "Mobil düğmelerin opaklığını seçer (0 olarak ayarlayıp düğmelerinizi kaybetmeyin).",
 		"Extra Controls" => "Ekstra Kontroller",
@@ -316,8 +313,6 @@ class Language {
 		"Choose your Hitbox Style!" => "Hitbox stilini seç!",
 		"Hitbox Design" => "Hitbox Şekli/Dizaynı",
 		"Choose how your hitbox should look like." => "Hitbox nasıl görünmeli?",
-		// Uyarılar (Alerts)
-		
 		
 		// ModsMenuState
 		"ON" => "AÇIK",
@@ -335,46 +330,54 @@ class Language {
 		"No description provided." => "Açıklama sağlanmadı.",
 		"No mod URL provided!" => "Mod URL'si sağlanmadı!",
 		"Other players will not be able to download this mod!\nPlease set it in the Setup Mods option!" => "Diğer oyuncular bu modu indiremeyecek!\nLütfen bunu Mod Kurulumu seçeneğinden ayarlayın!",
-		
 		"In the Menus" => "Menülerde",
 		"Mods" => "Modlar",
 		
-		// OnlineState.hx
+		// OnlineState
 		"JOIN" => "ODAYA KATIL",
 		"HOST" => "ODA AÇ",
 		"FIND" => "ODA BUL",
 		"OPTIONS" => "AYARLAR",
-		"LEADERBOARD" => "LİDERLİK TABLOSU",
 		"MOD DOWNLOADER" => "MOD YÜKLEYİCİ",
-		"JOIN CODE:" => "ODA KODU:",
-		"OPTIONS" => "AYARLAR",
-		// OnlineState - Yeni Eklenecekler
 		"JOIN CODE:" => "ODA KODU:",
 		"Fetching..." => "Bağlanılıyor...",
 		"NETWORK OFFLINE" => "AĞ ÇEVRİMDIŞI",
 		"Players Online: " => "Çevrimiçi Oyuncular: ",
 		"Available Rooms: " => "Çevrimiçi Odalar: ",
-
-		// OnlineState - Uyarı Metinleri
 		"WARNING" => "UYARI",
 		" of your mods do not have a valid URL set!" => " modlarınızın geçerli bir URL'si ayarlanmamış!",
-		
 		"Join Psych Online Discord Server!" => "Psych Online Discord Sunucusuna Katıl!",
 		"Documentation, FAQ and the Source Code!" => "Dökümanlar, SSS ve Kaynak Kodu!",
 		"Follow the official Psych Online Bluesky account!" => "Resmi Psych Online Bluesky hesabını takip et!",
 		"Follow the official Psych Online Twitter account!" => "Resmi Psych Online Twitter hesabını takip et!",
 		"Offline." => "Çevrimdışı.",
-
 		"Join a room using a room code" => "Oda kodu kullanarak bir odaya katıl",
 		"Creates a room" => "Bir oda oluşturur",
 		"Opens a list of all available public rooms" => "Tüm mevcut genel odaların listesini açar",
 		"Psych Online options, configure stuff here!" => "Psych Online ayarları, buradan yapılandır!",
 		"The Funkin Points Leaderboard!" => "Funkin Puanları Liderlik Tablosu!",
 		"Download mods from Gamebanana here!" => "Gamebanana'dan modları buradan indir!",
-
 		"Online Menu" => "Online Menüsü",
 		
-		// RoomState.hx
+		// GameClient
+		"Failed to connect!" => "Bağlanılamadı!",
+		"JOIN ERROR: " => "KATILMA HATASI: ",
+		"Room error!" => "Oda hatası!",
+		"room.onError: " => "oda.Hata: ",
+		"Reconnecting..." => "Yeniden bağlanıyor...",
+		"Couldn't reconnect!" => "Yeniden bağlanılamadı!",
+		"RECONNECT ERROR: " => "YENİDEN BAĞLANMA HATASI: ",
+		"Reconnected!" => "Yeniden bağlandı!",
+		"Critically failed to reconnect!" => "Yeniden bağlanma kritik şekilde başarısız oldu!",
+		"Disconnected!" => "Bağlantı kesildi!",
+		"Switching Rooms." => "Oda değiştiriliyor.",
+		"Room Disposed?" => "Oda Kapatıldı mı?",
+		"Left/Kicked from room: " => "Odadan ayrıldı/atıldı: ",
+		"Left/Kicked from unknown room!" => "Bilinmeyen odadan ayrıldı/atıldı!",
+		"Joined!" => "Katıldı!",
+		"Leaving the Room, Reason: " => "Odadan Ayrılıyor, Sebep: ",
+		"Reconnecting with Token: " => "Token ile yeniden bağlanıyor: ",
+		
 		// RoomState
 		"In the Lobby" => "Lobide",
 		"Typing..." => "Yazıyor...",
@@ -417,7 +420,6 @@ class Language {
 		"FP (" => "FP (",
 		"Ping: " => "Gecikme: ",
 		"ms" => "ms",
-		"NOT " => "DEĞİL ",
 		"NOT READY" => "HAZIR DEĞİL",
 		"READY" => "HAZIR",
 		"\n(Unloaded Skin)" => "\n(Yüklenmeyen Skin)",
@@ -514,7 +516,10 @@ class Language {
 		"ACCEPT, Paste links with CTRL + V" => "KABUL ET, CTRL + V ile link yapıştırın",
 		"BACK" => "GERİ",
 		
-		//Score Text
+		// StoryMenuState
+		"Story Mode" => "Hikaye Modu",
+		
+		// Score Text
 		"PlayState.updateTeamSide.daText" => "%{1}%
 			\nSkor: %{2}%
 			\nIskalar: %{3}%
@@ -527,7 +532,7 @@ class Language {
 		"PlayState.updateScore.scoreTextObject" => "Skor: %{1}% | Iskalar: %{2}% | Doğruluk: %{3}%",
 	];
 	
-	//normal texts will go there when turkish version done
+	// normal texts will go there when turkish version done
 	public static var normalTexts:Map<String, String> = [
 		"FlashingState.warnText" => "Hey, watch out!\n
 			This Mod contains some flashing lights!\n
