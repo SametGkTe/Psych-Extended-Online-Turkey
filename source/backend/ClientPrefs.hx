@@ -15,9 +15,10 @@ import states.TitleState;
 @:structInit class SaveVariables {
 	/* Psych Extended Stuff */
 	public var oldCameraSystem:Bool = false;
-	public var disableCameraRotate:Bool = false;
-	public var disableRGB:Bool = false; //new way to handle RGB notes (currently it does not support skins)
+	public var alterCamera:Bool = false;
+	public var disableRGBNotes:Bool = false; //new way to handle RGB notes (currently it does not support skins)
 	public var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]; //for testing only
+	public var lang:String = "EN";
 
 	/* Mobile */
 	public var wideScreen:Bool = false;
@@ -39,15 +40,6 @@ import states.TitleState;
 	public var hitboxLocation:String = 'Bottom';
 	public var hitboxMode:String = 'Normal (New)';
 	public var mobileExtraKeyReturns:Array<String> = ['SHIFT', 'SPACE', 'Q', 'E'];
-	
-	#if TURKIYE_BUILD
-	// PET AYARLARI
-	public var petwatermark:Bool = true;
-	public var petloadingscreen:Bool = true;
-	public var petwatermarklogo:String = 'ONLINE';
-	public var petloadingscreenimage:String = 'ONLINE';
-	public var disableIntroVideo:Bool = false;
-	#end
 
 	public var downScroll:Bool = false;
 	public var middleScroll:Bool = false;
@@ -109,7 +101,7 @@ import states.TitleState;
 	// PSYCH ONLINE
 	private var nickname:String = "Boyfriend";
 	public var serverAddress:String = null;
-	public var modSkin:Array<String> = null;
+	public var currentSkin:Array<String> = null;
 	public var trustedSources:Array<String> = ["https://gamebanana.com/"];
 	public var comboOffsetOP1:Array<Int> = [0, 0, 0, 0];
 	public var comboOffsetOP2:Array<Int> = [0, 0, 0, 0];
@@ -147,6 +139,9 @@ import states.TitleState;
 	public var midSongCommentsOpacity:Float = 0.5;
 	public var friendOnlineNotification:Bool = false;
 	public var newFPPreview:Bool = false;
+	public var camShakes:Bool = true;
+	public var camAngles:Bool = true;
+	public var camMovement:Bool = true;
 
 	public function new()
 	{
@@ -696,6 +691,22 @@ class ClientPrefs {
 
 	public static function getSafeFrames() {
 		return PlayState.replayData?.safe_frames ?? data.safeFrames;
+	}
+
+	public static function getHSVColor(player:Int = 0):Array<Array<Int>> {
+		/* the server-side thing doesn't work bc I'm not owner of the server.
+		if (!GameClient.isConnected() || NotesSubState.isOpened || player == -1)
+			return ClientPrefs.data.arrowHSV;
+
+		if (player == 0)
+			return CoolUtil.to2DArrayfrom1D(CoolUtil.asta(GameClient.getPlayerSelf().hsvArrowColors), 3);
+
+		if (PlayState.instance?.opponentPlayer == null)
+			return ClientPrefs.data.arrowHSV;
+
+		return CoolUtil.to2DArrayfrom1D(CoolUtil.asta(PlayState.instance.opponentPlayer.hsvArrowColors), 3);
+		*/
+		return ClientPrefs.data.arrowHSV;
 	}
 
 	public static function getRGBColor(player:Int = 0):Array<Array<FlxColor>> {

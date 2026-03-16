@@ -14,42 +14,6 @@ class Language {
 		"Sick!"		 => "Müthiş!",
 		"Perfect!!"	 => "Mükemmel!!",
 		
-		// Achievements - Başarımlar
-		"Freaky on a Friday Night" => "Cuma Gecesi",
-		"Play on a Friday... Night." => "Bir Cuma... Gecesi Oyna.",
-		"She Calls Me Daddy Too" => "Banada Baba Diyor",
-		"Beat Week 1 on Hard with no Misses." => "1. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"No More Tricks" => "Artık Hile Yok",
-		"Beat Week 2 on Hard with no Misses." => "2. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"Call Me The Hitman" => "Bana Tetikçi De",
-		"Beat Week 3 on Hard with no Misses." => "3. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"Lady Killer" => "Kadın Avcısı",
-		"Beat Week 4 on Hard with no Misses." => "4. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"Missless Christmas" => "Hatasız Noel",
-		"Beat Week 5 on Hard with no Misses." => "5. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"Highscore!!" => "Yüksek Skor!!",
-		"Beat Week 6 on Hard with no Misses." => "6. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"God Effing Damn It!" => "Allah Kahretsin!",
-		"Beat Week 7 on Hard with no Misses." => "7. Haftayı Zor Modda Hiç Kaçırmadan Bitir.",
-		"What a Funkin' Disaster!" => "Ne Büyük Bir Felaket!",
-		"Complete a Song with a rating lower than 20%." => "Bir Şarkıyı %20'den düşük doğruluk ile tamamla.",
-		"Perfectionist" => "Mükemmeliyetçi",
-		"Complete a Song with a rating of 100%." => "Bir Şarkıyı %100 doğrulukla tamamla.",
-		"Roadkill Enthusiast" => "Yol Kurbanı Meraklısı",
-		"Watch the Henchmen die 50 times." => "Uşakların 50 kez ölmesini izle.",
-		"Oversinging Much...?" => "Fazla mı Şarkı Söyledin...?",
-		"Sing for 10 seconds without going back to Idle." => "Boşa (Idle) dönmeden 10 saniye boyunca söyle.",
-		"Hyperactive" => "Hiperaktif",
-		"Finish a Song without going back to Idle." => "Bir Şarkıyı Boşa (Idle) dönmeden bitir.",
-		"Just the Two of Us" => "Sadece İkimiz",
-		"Finish a Song pressing only two keys." => "Bir Şarkıyı sadece iki tuşa basarak bitir.",
-		"Toaster Gamer" => "Ekmek Kızartıcı Oyuncu",
-		"Have you tried to run the game on a toaster?" => "Oyunu bir ekmek kızartıcıda çalıştırmayı denedin mi?",
-		"Debugger" => "Hata Ayıklayıcı",
-		"Beat the \"Test\" Stage from the Chart Editor." => "Chart Editöründen \"Test\" Sahnesini Bitir.",
-		"It's over 1000!" => "1000'i Aştı!",
-		"Completed a Song with combo higher than 1000." => "Bir Şarkıyı 1000'den yüksek kombo ile tamamla.",
-		
 		// Değişkenler
 		"multiplicative" => "çarpıcı",
 		"WEEK SCORE:" => "HAFTA SKORU:",
@@ -113,7 +77,7 @@ class Language {
 		"Play as Opponent"          => "Rakip Olarak Oyna",
 		"No Hurt Notes"             => "Hasar Veren Notaları Sil",
 	
-		// Reset Score SubState
+		//Reset Score SubState
 		"Reset the score of"             => "Bu Şarkının Skorunu Sıfırlamak Istiyormusunuz?:",
 		"Yes"		=> "Evet",
 		"No"		=> "Hayır",
@@ -129,11 +93,11 @@ class Language {
 		"Favorites" => "Favoriler",
 		"Hidden" => "Gizli",
 		" MIX" => " KARIŞIMI",
-		"PLAYER" => "OYUNCU",
 		"SCORE" => "SKOR",
 		"ACCURACY" => "DOĞRULUK",
 		"RANK" => "RÜTBE",
 		"RANKS" => "RÜTBELER",
+		
 		"PERSONAL BEST" => "EN İYİ SKOR",
 		"PROTECT YO NUTS BOYFRIEND"       => "SOMUNLARINI KORU BOYFRIEND",
 		"DON'T STOP BOYFRIEND"            => "DURMA BOYFRIEND",
@@ -146,9 +110,73 @@ class Language {
 		"BEHIND YOU BOYFRIEND"            => "ARKANDAYIM BOYFRIEND",
 		"DRINK PISS BOYFRIEND"            => "GİT Bİ' ÇAY İÇ BOYFRIEND",
 		"COME TO BRAZIL BOYFRIEND"        => "BAĞCILARA GEL BOYFRIEND",
-		"FUNK THEIR BRAINS OUT BOYFRIEND" => "TURNUVALARA HAZIRLAN BOYFRIEND",
+		"FUNK THEIR BRAINS OUT BOYFRIEND" => "SAMETİ SİK BOYFRIEND",
 		
-		// Grafik Ayarları
+		// Visuals & UI Settings
+		"Language:" => "Dil:",
+		"Select your language." => "Dilini Seç.",
+		"Disable RGB" => "RGB'yi Kapat",
+		"If checked, disables the rgb shader globally." => "İşaretlenirse, RGB shader'ı genel olarak devre dışı bırakır.",
+		"Note Skins:" => "Nota Görünümleri:",
+		"Select your prefered Note skin." => "Tercih ettiğin nota görünümünü seç.",
+		"Note Splashes:" => "Nota Sıçramaları:",
+		"Select your prefered Note Splash variation or turn it off." => "Tercih ettiğin nota sıçrama varyasyonunu seç veya kapat.",
+		"Note Splash Opacity" => "Nota Sıçrama Opaklığı",
+		"How much transparent should the Note Splashes be.\n0% disables it." => "Nota sıçramalarının ne kadar şeffaf olacağını belirler.\n%0 devre dışı bırakır.",
+		"Note Hold Splash Opacity" => "Uzun Nota Sıçrama Opaklığı",
+		"How much transparent should the Note Hold Splash be.\n0% disables it." => "Uzun nota (sustain) sıçramalarının ne kadar şeffaf olacağını belirler.\n%0 devre dışı bırakır.",
+		"Trail Note Opacity" => "Nota izinin Opaklığı",
+		"How much transparent should the Note Trail be." => "Nota izlerinin (kuyruklarının) ne kadar şeffaf olacağını belirler.",
+		"Hide HUD" => "Arayüzü Gizle",
+		"If checked, hides most HUD elements." => "İşaretlenirse, çoğu arayüz öğesini gizler.",
+		"Time Bar:" => "Zaman Çubuğu:",
+		"What should the Time Bar display?" => "Zaman çubuğu neyi göstermeli?",
+		"Flashing Lights" => "Yanıp Sönen Işıklar",
+		"Uncheck this if you're sensitive to flashing lights!" => "Eğer yanıp sönen ışıklara karşı hassasiyetiniz varsa bunu kapatın!",
+		"Camera Zooms" => "Kamera Yakınlaştırmaları",
+		"If unchecked, the camera won't zoom in on a beat hit." => "İşaretlenmezse, kamera vuruşlarda (beat hit) yakınlaştırma yapmaz.",
+		"Score Text Zoom on Hit" => "Vuruşta Puan Metni Yakınlaştırması",
+		"If unchecked, disables the Score text zooming\neverytime you hit a note." => "İşaretlenmezse, her nota vurduğunuzda puan\nmetninin yakınlaşmasını devre dışı bırakır.",
+		"Health Bar Opacity" => "Can Çubuğu Opaklığı",
+		"How much transparent should the health bar and icons be." => "Can çubuğunun ve ikonların ne kadar şeffaf olacağını belirler.",
+		"FPS Counter" => "FPS Sayacı",
+		"If unchecked, hides FPS Counter." => "İşaretlenmezse, FPS sayacını gizler.",
+		"Disable Online Shaders" => "Çevrimiçi Shaderları Kapat",
+		"If checked, disables shaders that being used on online menus." => "İşaretlenirse, çevrimiçi menülerde kullanılan shaderları devre dışı bırakır.",
+		"Pause Screen Song:" => "Duraklatma Ekranı Müziği:",
+		"What song do you prefer for the Pause Screen?" => "Duraklatma ekranı için hangi müziği tercih edersiniz?",
+		"Check for Updates" => "Güncellemeleri Kontrol Et",
+		"On Release builds, turn this on to check for updates when you start the game." => "Tam sürüm yapılarında, oyunu başlattığınızda güncellemeleri kontrol etmek için bunu açın.",
+		"Discord Rich Presence" => "Discord Zengin Varlık",
+		"Uncheck this to prevent accidental leaks, it will hide the Application from your \"Playing\" box on Discord" => "Yanlışlıkla sızıntı yapmamak için bunu kapatın; Discord'daki \"Oynuyor\" kutusunda uygulamayı gizleyecektir.",
+		"Debug Mode" => "Hata Ayıklama Modu",
+		"If checked, enables debug warnings etc." => "İşaretlenirse, hata ayıklama uyarılarını vb. etkinleştirir.",
+		"Show Note timing" => "Nota Zamanlamasını Göster",
+		"If checked, a timing of the hitted note will be shown on the screen (in miliseconds)" => "İşaretlenirse, vurulan notanın zamanlaması ekranda gösterilir (milisaniye cinsinden).",
+		"Disable Automatic Downloads" => "Otomatik indirmeleri Kapat",
+		"Disables automatic downloads of Mods and Skins from the opponent" => "Rakipten gelen modların ve görünümlerin otomatik indirilmesini devre dışı bırakır.",
+		"Disable Song Comments" => "Şarkı Yorumlarını Kapat",
+		"Disables song comments on the replay viewer and (if visible, while playing)" => "Tekrar izleyicideki ve (görünürse oyun sırasındaki) şarkı yorumlarını devre dışı bırakır.",
+		"Song Comments Opacity" => "Şarkı Yorumu Opaklığı",
+		"How visible should the song comments be while you're playing a song" => "Şarkı oynarken yorumların ne kadar görünür olacağını belirler.",
+		"Show Funkin Points Counter" => "Funkin Points Sayacını Göster",
+		"If checked, the current FP count will be shown in the score text, can be toggled in-game with F7" => "İşaretlenirse, mevcut FP sayısı puan metninde gösterilir, oyun içinde F7 ile değiştirilebilir.",
+		"FP V5 Preview" => "FP V5 Önizlemesi",
+		"If enabled, new FP algorithm will be shown in the Counter" => "Etkinleştirilirse, sayaçta yeni FP algoritması gösterilir.",
+		"Group Songs:" => "Şarkıları Grupla:",
+		"How should songs on Freeplay menu be group by?" => "Serbest Oynanış menüsündeki şarkılar neye göre gruplandırılmalı?",
+		"Rating Color" => "Derece Rengi",
+		"If checked, the Rating text will be colored depending on your current... well... Rating, same with Combo." => "İşaretlenirse, Derece metni ve Kombo mevcut derecenize göre renklendirilir.",
+		"Favorite Tracks Menu Theme" => "Favori Parçalar Menü Teması",
+		"If checked, the game will be picking your random favorite song as the main menu theme!" => "İşaretlenirse, oyun ana menü teması olarak rastgele bir favori şarkınızı seçecektir!",
+		"Disable Combo Rating" => "Kombo Derecesini Kapat",
+		"If checked, the combo rating sprite will no longer show up." => "İşaretlenirse, kombo derecesi görseli artık görünmez.",
+		"Disable Combo Counter" => "Kombo Sayacını Kapat",
+		"If checked, the combo counter sprite will no longer show up." => "İşaretlenirse, kombo sayacı görseli artık görünmez.",
+		"Nameplate Fade Time" => "Isim Plakası Kaybolma Süresi",
+		"After how many seconds should player nameplates be hidden?\nSet to 0 to instantly hide them.\nSet to -1 to never hide them." => "Oyuncu isim plakaları kaç saniye sonra gizlensin?\nAnında gizlemek için 0, hiç gizlememek için -1 yapın.",
+		
+		// Graphics Settings
 		"Graphics and Performance" => "Grafikler ve Performans",
 		"Graphics Settings Menu" => "Grafik Ayarları Menüsü",
 		"Low Quality" => "Düşük Kalite",
@@ -211,11 +239,11 @@ class Language {
 		
 		// Freeplay Menu metinleri
 		"ACCEPT to enter the Song / Use your Arrow Keys to change the Difficulty" => "KABUL ET şarkıyı açmak için / Ok tuşlarını kullanarak Zorluk Değiştirin",
-		"ACCEPT to select the Song / SPACE to listen to the Song / RESET to" => "KABUL ET şarkıyı seçmek için / SPACE ile şarkıyı dinleyin / RESET ile şarkıyı",
+		"ACCEPT to select the Song / %{1}% to listen to the Song / RESET to " => "şarkıyı seçmek için KABUL ET / %{1}% ile şarkıyı dinleyin / RESET ile şarkıyı",
 		"show" => "göster",
 		"hide" => "gizle",
-		"the Song" => "",
-		"TAB to select your character!" => "TAB ile karakterinizi seçin!",
+		" the Song" => "",
+		" / TAB to select your character!" => " / TAB ile karakterinizi seçin!",
 		"ACCEPT to open Gameplay Modifers Menu" => "KABUL ET ile Oynanış Ayarları Menüsünü açın",
 		"ACCEPT to load a Replay data file" => "KABUL ET ile Tekrar dosyasını yükleyin",
 		"ACCEPT to reset Score and Accuracy of this Song" => "KABUL ET ile bu Şarkının Skorunu ve Doğruluğunu sıfırlayın",
@@ -226,7 +254,7 @@ class Language {
 		"Loading..." => "Yükleniyor...",
 		"Failed to fetch!" => "Yüklenemedi!",
 		"Failed to load!" => "Yüklenemedi!",
-		"ACCEPT to select a random song / SPACE to select without loading / CTRL to select song group" => "KABUL ET rastgele şarkı seçmek için / SPACE yüklemeden seçmek için / CTRL şarkı grubu seçmek için",
+		"ACCEPT to select a random song / %{1}% to select without loading / %{2}% to select song group" => "KABUL ET rastgele şarkı seçmek için / %{1}% yüklemeden seçmek için / %{2}% şarkı grubu seçmek için",
 		"PRESS F TO SEARCH" => "ARAMAK İÇİN F'YE BASIN",
 		"SEARCH" => "ARA",
 		
@@ -276,9 +304,22 @@ class Language {
 		"LOAD REPLAY"             => "TEKRARI YÜKLE",
 		"REPLAYS UNAVAILABLE"     => "TEKRARLAR KULLANILAMAZ",
 		"RESET SCORE"             => "SKORU SIFIRLA",
-		"LEADERBOARD"             => "LiDERLiK TABLOSU",
 		"< ALL TIME >"            => "< HER ZAMAN >",
+		"PLAYER"            => "OYUNCU",
 		"LOADING"                 => "YÜKLENİYOR",
+		"LOADING..."                 => "YÜKLENİYOR...",
+		
+		// Options State Menu Kategorileri
+		"Performance" => "Performans",
+		"Visuals & UI" => "Görseller & Arayüz",
+		"Game" => "Oyun",
+		"Notes" => "Notalar",
+		"Combo & Rating" => "Kombo & Derece",
+		"User Interface" => "Kullanıcı Arayüzü",
+		"Accessibility" => "Erişilebilirlik",
+		"Preferences" => "Tercihler",
+		"Mobile Extra Control" => "Mobil Ekstra Kontrol",
+		"Mobile Options" => "Mobil Seçenekleri",
 		"FlashingState.warnText"  => "Hey, dikkat et!\n
 			Bu Oyun, bazı yanıp sönen ışıklar içeriyor!\n
 			Flaşları kapatmak veya Ayarlar'a gitmek için %{1}% tuşuna basın.\n
@@ -294,8 +335,46 @@ class Language {
 		"HELL" => "CEHENNEM",
 		"INSANE" => "ÇILGIN",
 		"DEATH" => "ÖLÜM",
+		"PORNO" => "NE VAR YARRAM -ARKOSELABS",
 
-		// Ayarlar
+		// Achievements
+		"Reset Achievement:" => "Basarımı Sıfırla:",
+		"Freaky on a Friday Night" => "Cuma Gecesi Eğlencesi",
+		"Play on a Friday... Night." => "Bir Cuma... Gecesinde oyna.",
+		"She Calls Me Daddy Too" => "O da Bana Babacık Diyor",
+		"Beat Week 1 on Hard with no Misses." => "1. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"No More Tricks" => "Numara Yapmak Yok",
+		"Beat Week 2 on Hard with no Misses." => "2. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"Call Me The Hitman" => "Bana Tetikçi De",
+		"Beat Week 3 on Hard with no Misses." => "3. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"Lady Killer" => "Kadın Avcısı",
+		"Beat Week 4 on Hard with no Misses." => "4. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"Missless Christmas" => "Hatasız Noel",
+		"Beat Week 5 on Hard with no Misses." => "5. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"Highscore!!" => "Yüksek Skor!!",
+		"Beat Week 6 on Hard with no Misses." => "6. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"God Effing Damn It!" => "Hadi Oradan Be!",
+		"Beat Week 7 on Hard with no Misses." => "7. Haftayı Hard zorlukta hiç kaçırmadan bitir.",
+		"What a Funkin' Disaster!" => "Tam Bir Funkin' Felaketi!",
+		"Complete a Song with a rating lower than 20%." => "Bir şarkıyı %20'den daha düşük bir dereceyle tamamla.",
+		"Perfectionist" => "Mükemmeliyetçi",
+		"Complete a Song with a rating of 100%." => "Bir şarkıyı %100 dereceyle tamamla.",
+		"Roadkill Enthusiast" => "Ezilme Meraklısı",
+		"Watch the Henchmen die 50 times." => "Yardımcıların ölmesini 50 kez izle.",
+		"Oversinging Much...?" => "Biraz Fazla mı Söylüyorsun...?",
+		"Sing for 10 seconds without going back to Idle." => "Boşta durma (Idle) animasyonuna dönmeden 10 saniye boyunca şarkı söyle.",
+		"Hyperactive" => "Hiperaktif",
+		"Finish a Song without going back to Idle." => "Boşta durma (Idle) animasyonuna hiç dönmeden bir şarkıyı bitir.",
+		"Just the Two of Us" => "Sadece İkimiz",
+		"Finish a Song pressing only two keys." => "Sadece iki tuşa basarak bir şarkıyı bitir.",
+		"Toaster Gamer" => "Tost Makinesi Oyuncusu",
+		"Have you tried to run the game on a toaster?" => "Oyunu bir tost makinesinde çalıştırmayı denedin mi?",
+		"Debugger" => "Hata Ayıklayıcı",
+		"Beat the \"Test\" Stage from the Chart Editor." => "Chart Editor'deki \"Test\" aşamasını bitir.",
+		"It's over 1000!" => "1000'den Fazla!",
+		"Completed a Song with combo higher than 1000." => "Bir şarkıyı 1000'den yüksek kombo ile tamamla.",
+
+		//Ayarlar
 		"Note Colors" => "Nota Renkleri",
 		"Controls" => "Kontroller",
 		"Adjust Delay and Combo" => "Gecikme ve Kombo",
@@ -304,7 +383,7 @@ class Language {
 		"Gameplay" => "Oynanış",
 		"Mobile" => "Mobil Ayarlar",
 
-		// Mobil Ayarlar
+		//Mobil Ayarlar
 		"MobilePad Opacity" => "MobilePad Opaklığı",
 		"Selects the opacity for the mobile buttons (careful not to put it at 0 and lose track of your buttons)." => "Mobil düğmelerin opaklığını seçer (0 olarak ayarlayıp düğmelerinizi kaybetmeyin).",
 		"Extra Controls" => "Ekstra Kontroller",
@@ -313,6 +392,8 @@ class Language {
 		"Choose your Hitbox Style!" => "Hitbox stilini seç!",
 		"Hitbox Design" => "Hitbox Şekli/Dizaynı",
 		"Choose how your hitbox should look like." => "Hitbox nasıl görünmeli?",
+		// Uyarılar (Alerts)
+		
 		
 		// ModsMenuState
 		"ON" => "AÇIK",
@@ -330,33 +411,42 @@ class Language {
 		"No description provided." => "Açıklama sağlanmadı.",
 		"No mod URL provided!" => "Mod URL'si sağlanmadı!",
 		"Other players will not be able to download this mod!\nPlease set it in the Setup Mods option!" => "Diğer oyuncular bu modu indiremeyecek!\nLütfen bunu Mod Kurulumu seçeneğinden ayarlayın!",
+		"\nBITCH." => "\nAMK.",
+		
 		"In the Menus" => "Menülerde",
 		"Mods" => "Modlar",
 		
-		// OnlineState
+		// OnlineState.hx
 		"JOIN" => "ODAYA KATIL",
 		"HOST" => "ODA AÇ",
 		"FIND" => "ODA BUL",
-		"OPTIONS" => "AYARLAR",
+		"LEADERBOARD" => "LiDERLiK TABLOSU",
 		"MOD DOWNLOADER" => "MOD YÜKLEYİCİ",
-		"JOIN CODE:" => "ODA KODU:",
+		"OPTIONS" => "AYARLAR",
+		// OnlineState - Yeni Eklenecekler
+		"JOIN CODE: " => "ODA KODU: ",
 		"Fetching..." => "Bağlanılıyor...",
 		"NETWORK OFFLINE" => "AĞ ÇEVRİMDIŞI",
 		"Players Online: " => "Çevrimiçi Oyuncular: ",
 		"Available Rooms: " => "Çevrimiçi Odalar: ",
+
+		// OnlineState - Uyarı Metinleri
 		"WARNING" => "UYARI",
 		" of your mods do not have a valid URL set!" => " modlarınızın geçerli bir URL'si ayarlanmamış!",
+		
 		"Join Psych Online Discord Server!" => "Psych Online Discord Sunucusuna Katıl!",
 		"Documentation, FAQ and the Source Code!" => "Dökümanlar, SSS ve Kaynak Kodu!",
 		"Follow the official Psych Online Bluesky account!" => "Resmi Psych Online Bluesky hesabını takip et!",
 		"Follow the official Psych Online Twitter account!" => "Resmi Psych Online Twitter hesabını takip et!",
 		"Offline." => "Çevrimdışı.",
+
 		"Join a room using a room code" => "Oda kodu kullanarak bir odaya katıl",
 		"Creates a room" => "Bir oda oluşturur",
 		"Opens a list of all available public rooms" => "Tüm mevcut genel odaların listesini açar",
 		"Psych Online options, configure stuff here!" => "Psych Online ayarları, buradan yapılandır!",
 		"The Funkin Points Leaderboard!" => "Funkin Puanları Liderlik Tablosu!",
 		"Download mods from Gamebanana here!" => "Gamebanana'dan modları buradan indir!",
+
 		"Online Menu" => "Online Menüsü",
 		
 		// GameClient
@@ -378,7 +468,7 @@ class Language {
 		"Leaving the Room, Reason: " => "Odadan Ayrılıyor, Sebep: ",
 		"Reconnecting with Token: " => "Token ile yeniden bağlanıyor: ",
 		
-		// RoomState
+		// RoomState.hx
 		"In the Lobby" => "Lobide",
 		"Typing..." => "Yazıyor...",
 		"Downloading (" => "İndiriliyor (",
@@ -420,6 +510,7 @@ class Language {
 		"FP (" => "FP (",
 		"Ping: " => "Gecikme: ",
 		"ms" => "ms",
+		"NOT " => "DEĞİL ",
 		"NOT READY" => "HAZIR DEĞİL",
 		"READY" => "HAZIR",
 		"\n(Unloaded Skin)" => "\n(Yüklenmeyen Skin)",
@@ -530,14 +621,179 @@ class Language {
 
 		"PlayState.updateScoreSID.else.daText" => '%{1}%\nSkor: %{2}%\nIskalar: %{3}%\nRating: %{4}%' + (ClientPrefs.data.showFP ? '\nFP: %{5}%' : '') + "\nGecikme: %{6}%",
 		"PlayState.updateScore.scoreTextObject" => "Skor: %{1}% | Iskalar: %{2}% | Doğruluk: %{3}%",
+		
+		// Alert Mesajları
+		"Replay Reported" => "Tekrar Raporlandı",
+		"Replay Saved!" => "Tekrar Kaydedildi!",
+		"Replay Submiting: " => "Tekrar Gönderiliyor: ",
+		"Debug Mode: " => "Hata Ayıklama Modu: ",
+		"Mod Lag Detected (-2s)" => "Mod Gecikmesi Algılandı (-2s)",
+		"Calculated Points from Replay" => "Tekrardan Hesaplanan Puanlar",
+		"Calculated Points" => "Hesaplanan Puanlar",
+		"New message" => "Yeni mesaj",
+		"Stage set to default!" => "Sahne varsayılan olarak ayarlandı!",
+		"Stage set to " => "Sahne olarak ayarlandı: ",
+		"!" => "!",
+		"Skins are disabled!" => "Skin'ler devre dışı!",
+		"Failed to load the skin!" => "Skin yüklenemedi!",
+		"Caught an exception!" => "Bir istisna oluştu!",
+		"You don't have the current stage!" => "Mevcut sahneyi sahip değilsiniz!",
+		"Song isn't selected!" => "Şarkı seçilmedi!",
+		"You don't have the current song/mod!" => "Mevcut şarkı/moda sahip değilsiniz!",
+		"Only the host can do that!" => "Bunu sadece host yapabilir!",
+		"You already have this song installed!" => "Bu şarkı zaten yüklü!",
+		"Mod couldn't be found!" => "Mod bulunamadı!",
+		"Host didn't specify the URL of this mod" => "Host bu modun URL'sini belirtmedi",
+		"Expected mod data to exist in this path: " => "Mod verilerinin bu yolda olması bekleniyor: ",
+		"Cleared the trusted domains list!" => "Güvenilen alan adları listesi temizlendi!",
+		"No username set!" => "Kullanıcı adı ayarlanmadı!",
+		"Successfully registered!" => "Başarıyla kayıt olundu!",
+		"Fetching..." => "Bağlanılıyor...",
+		"NETWORK OFFLINE" => "AĞ ÇEVRİMDIŞI",
+		"Players Online: " => "Çevrimiçi Oyuncular: ",
+		
+		// Main.hx Mesajları
+		"Warning!" => "Uyarı!",
+		"The game has been resetted, and there may occur visual bugs with the sidebar!\n\nIt's recommended to restart the game instead." => "Oyun sıfırlandı, kenar çubuğunda görsel hatalar oluşabilir!\n\nOyunu yeniden başlatmanız önerilir.",
+		"Uncaught Exception!" => "Yakalanmamış İstisna!",
+		
+		// Diğer Mesajlar
+		"waiting for other player..." => "Diğer oyuncu için bekleniyor...",
+		
+		// Mod İndirme Hataları
+		"Fetching downloads failed!" => "İndirmeler alınamadı!",
+		"Fetching downloads failed!" => "İndirmeler alınamadı!",
+		"Mod download failed!" => "Mod İndirmesi Başarısız!",
+		"Listing RAR failed!" => "RAR Listeleme Başarısız!",
+		"That mod is deleted!" => "Bu mod silinmiş!",
+		"Mod's data is corrupted or invalid!" => "Modun verileri bozuk veya geçersiz!",
+		"Downloading Cancelled" => "İndirme İptal Edildi",
+		"Mod's archive file is WAY too big!" => "Modun arşiv dosyası ÇOK büyük!",
+		"GB" => "GB",
+		"Mod data not found inside of the archive!" => "Arşiv içinde mod verileri bulunamadı!",
+		"Installation Error!" => "Kurulum Hatası!",
+		"It seems this mod directory is already being accessed\nby the game or another program!" => "Bu mod dizininin zaten oyun veya başka bir program tarafından erişildiği görülüyor!",
+		"Extracting RAR failed!" => "RAR Çıkarma Başarısız!",
+		"Mod Installation Successful!" => "Mod Kurulumu Başarılı!",
+		"Downloaded mod:" => "İndirilen mod:",
+		"From:" => "Kaynağı:",
+		"Local Storage" => "Yerel Depolama",
+		"Unsupported file archive type!" => "Desteklenmeyen dosya arşivi türü!",
+		"Only ZIP, TAR, TGZ, RAR archives are supported!" => "Yalnızca ZIP, TAR, TGZ, RAR arşivleri desteklenmektedir!",
+		"Can't download GDrive folders!" => "GDrive klasörleri indirilemez!",
+		
+		// MediaFire İndirme
+		"MediaFire Download failed!" => "MediaFire İndirmesi Başarısız!",
+		"Couldn't connect to MediaFire!" => "MediaFire'a bağlanılamadı!",
+		"Status:" => "Durum:",
+		"Can't get the download link for this MediaFire file!" => "Bu MediaFire dosyası için indirme bağlantısı alınamıyor!",
+		
+		// Ağ Bağlantısı
+		"Try again in a few minutes! The server is probably restarting!" => "Birkaç dakika sonra tekrar deneyin! Sunucu muhtemelen yeniden başlatılıyor!",
+		"Reconnected!" => "Yeniden Bağlandı!",
+		
+		// UI Durum/Bilgi
+		"Regular BG" => "Normal Arkaplan",
+		"Pixel BG" => "Piksel Arkaplan",
+		"BOTPLAY" => "BOT OYNAYIN",
+		"Press ACCEPT to select!" => "Seçmek için ACCEPT'a basın!",
+		"Selected!" => "Seçildi!",
+		"Sample" => "Örnek",
+		"This character has custom MIXES!" => "Bu karakter özel KARIŞIMLARA sahip!",
+		"Not logged in!" => "Oturum açmadı!",
+		"(Click to register)" => "(Kaydolmak için tıkla)",
+		"User not found!" => "Kullanıcı bulunamadı!",
+		"Welcome," => "Hoş geldin,",
+		"Points:" => "Puanlar:",
+		
+		// İndirme Arayüzü
+		"Search mods here // Enter a URL to download..." => "Modları buradan ara // İndirmek için URL girin...",
+		"Page" => "Sayfa",
+		"Error:" => "Hata:",
+		"Waiting to download:" => "İndirilmeyi bekliyor:",
+		"Cancelling..." => "İptal Ediliyor...",
+		"Cancel: ALT +" => "İptal: ALT +",
+		"Downloading:" => "İndiriliyor:",
+		"of ?MB" => "/ ?MB",
+		" of " => " / ",
+		"Files" => "Dosyalar",
+		"Alternate File Sources" => "Alternatif Dosya Kaynakları",
+		
+		// Oda/Lobi Bilgisi
+		"Room Code:" => "Oda Kodu:",
+		"No chosen mod." => "Seçili mod yok.",
+		" (Unknown; Host didn't specify mod's URL)" => " (Bilinmiyor; Host modun URL'sini belirtmedi)",
+		" (Download/Verify it here!)" => " (Buradan İndir/Doğrula!)",
+		"Selected Song:" => "Seçilen Şarkı:",
+		
+		// Kazanma Koşulları
+		"Side with the highest Accuracy wins!" => "En yüksek doğruluğa sahip taraf kazanır!",
+		"Side with the highest Score wins!" => "En yüksek puana sahip taraf kazanır!",
+		"Side with the least Misses wins!" => "En az iskaya sahip taraf kazanır!",
+		"Side with the most FP wins!" => "En çok FP'ye sahip taraf kazanır!",
+		"Side with the highest Combo wins!" => "En yüksek comboya sahip taraf kazanır!",
+		
+		// Animasyon Editörü
+		"INVALID ANIMATION NAME" => "GEÇERSİZ ANİMASYON ADI",
+		"ERROR! NO ANIMATIONS FOUND" => "HATA! ANİMASYON BULUNAMADI",
+		"Press ENTER again to save." => "Kaydetmek için ENTER'a tekrar basın.",
+		"Press A again to save." => "Kaydetmek için A'ya tekrar basın.",
+		"Force Frame:" => "Kare Zorla:",
+		"(Press Q/E to change)" => "(Değiştirmek için Q/E basın)",
+		"Saved to:" => "Kaydedildi:",
+		"Can't save on this platform, too bad." => "Bu platform üzerinde kaydedilemiyor, üzür diliyoruz.",
+		"Current Animation:" => "Mevcut Animasyon:",
+		"Force Frame Disabled" => "Kare Zorlaması Devre Dışı",
+		"(Press W/S to change)" => "(Değiştirmek için W/S basın)",
+		"(Press UP or DOWN to scroll)" => "(Kaydırmak için YUKARI veya AŞAĞI basın)",
+		"(Press TOP UP/DOWN to change)" => "(Değiştirmek için EN YUKARI/AŞAĞI basın)",
+		
+		// Sohbet/Giriş
+		"(Type something to input the message," => "(Mesajı girmek için bir şey yazın,",
+		" to send)" => " göndermek için)",
+		"(Press TAB to open chat!)" => "(Sohbeti açmak için TAB'a basın!)",
+		"(Click here or press TAB to chat)" => "(Sohbeti açmak için burayı tıkla veya TAB'a basın)",
+		
+		// Online 
+		"git gud" => "Almışsın Burnumda",
+		"your performance was SHIT" => "Performansın BERBAT",
+		"Replay Uploaded!" => "Tekrar Yüklendi!",
+		"After try #" => "Deneme #'den sonra ",
+		"RAR is not supported on this platform!" => "Bu platform üzerinde RAR desteklenmiyor!",
+		"network/leaderboards" => "network/leaderboards",
+		"Please try again by re-opening the game!" => "Oyunu yeniden açarak tekrar deneyin!",
+		"Downloading failed!" => "İndirme başarısız!",
+		"Too many files are downloading right now! (Max 6)" => "Şu anda çok fazla dosya indiriliyor! (Max 6)",
+		"may be invalid or unsupported file type!" => "geçersiz veya desteklenmeyen dosya türü olabilir!",
+		"Error!" => "Hata!",
+		"Download canceled!" => "İndirme iptal edildi!",
+		"Network Room error!" => "Ağ Odası Hatası!",
+		" has invited you to their room!" => " seni odalarına davet etti!",
+		"(Click to Join)" => "(Odaya Katılmak İçin Tıkla)",
+		" is now online!" => " şimdi çevrimiçi!",
+		"[WARNING] Loaded some script from the local storage!!!" => "[UYARI] Yerel depodan bir betik yüklendi!!!",
+		"Failed to connect to the Network!" => "Ağa bağlanılamadı!",
+		"You're not in a room!" => "Bir odada değilsiniz!",
+		"Server Stopped!" => "Sunucu Durduruldu!",
+		"New Chat Message!" => "Yeni Sohbet Mesajı!",
+		"Removed " => "Kaldırıldı ",
+		" from friends" => " dostlardan",
+		"Friend invite has been sent to " => "Arkadaş daveti gönderildi ",
+		"Successfully logged in!" => "Başarıyla giriş yapıldı!",
+		"Account Deleted" => "Hesap Silindi",
+		"exc: " => "exc: ",
+		"Room code copied!" => "Oda kodu kopyalandı!",
+		"Mod " => "Mod ",
 	];
 	
-	// normal texts will go there when turkish version done
+	//normal texts will go there when turkish version done
 	public static var normalTexts:Map<String, String> = [
 		"FlashingState.warnText" => "Hey, watch out!\n
-			This Mod contains some flashing lights!\n
-			Press %{1}% to disable them now or go to Options Menu.\n
-			Press %{2}% to ignore this message.\n
+			This game can trigger photosensitive epilepsy! \n
+			If you have motion sickness you should check these settings!  \n\n
+			Press %{1}% to check Accessibility Settings.\n
+			Press %{2}% to ignore this message.\n\n
+			(These settings will not block all effects)\n
 			You've been warned!",
 
 		"PlayState.updateTeamSide.daText" => "%{1}%
@@ -555,13 +811,10 @@ class Language {
 	public static inline function getText(ogText:String, ?args:Array<Dynamic>):String {
 		var text:String = ogText;
 
-		#if TURKIYE_BUILD
-		if (turkishTexts.exists(text))
+		if (turkishTexts.exists(text) && ClientPrefs.data.lang == "TR")
 			text = turkishTexts.get(text);
-		#else
-		if (normalTexts.exists(text))
+		else if (normalTexts.exists(text))
 			text = normalTexts.get(text);
-		#end
 
 		if (args != null && args.length > 0) {
 			for (i in 0...args.length) {

@@ -6,6 +6,12 @@
       "version": "2.6.0"
     },
     {
+      "name": "lime",
+      "type": "git",
+      "ref": "main",
+      "url": "https://github.com/ArkoseLabsOfficial/lime"
+    },
+    {
       "name": "openfl",
       "type": "haxelib",
       "version": "9.3.3"
@@ -35,8 +41,8 @@
       "name": "hxcpp",
       "type": "git",
       "dir": null,
-      "ref": "6546fa5c3ad1bac065f144745122ab5a6d4195ff",
-      "url": "https://github.com/FunkinCrew/hxcpp"
+      "ref": null,
+      "url": "https://github.com/AlafandyPorting/hxcpp-0.7.3"
     },
     {
       "name": "tjson",
@@ -65,12 +71,12 @@
     {
       "name": "colyseus",
       "type": "haxelib",
-      "version": "0.15.2"
+      "version": "0.17.3"
     },
     {
       "name": "colyseus-websocket",
       "type": "haxelib",
-      "version": "1.0.12"
+      "version": "1.0.15"
     },
     {
       "name": "HtmlParser",
@@ -162,21 +168,14 @@
       "type": "git",
       "dir": null,
       "ref": "main",
-      "url": "https://github.com/Prohack101010/mobile-controls-dev"
+      "url": "https://github.com/ArkoseLabsOfficial/mobile-controls-dev"
     },
     {
       "name": "hscript-improved",
       "type": "git",
       "dir": null,
       "ref": null,
-      "url": "https://github.com/PsychExtendedThings/hscript-improved-Psych"
-    },
-    {
-      "name": "extension-androidtools",
-      "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/MAJigsaw77/extension-androidtools"
+      "url": "https://github.com/PsychExtendedThings/hscript-improved"
     },
     {
       "name": "tink_await",

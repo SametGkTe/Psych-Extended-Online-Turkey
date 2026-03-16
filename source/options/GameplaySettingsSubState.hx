@@ -1,65 +1,63 @@
 package options;
 
+import states.FreeplayState;
+
 class GameplaySettingsSubState extends BaseOptionsMenu
 {
-	public function new()
-	{
-		title = Language.getText('Gameplay');
-		rpcTitle = Language.getText('Gameplay Settings Menu'); //for Discord Rich Presence
-
+	function openGameOptions() {
 		/* Psych Extended Stuffs */
-		var option:Option = new Option(Language.getText('Old Camera System'),
-			Language.getText("If checked, game uses old camera system instead of new one.\n(If you have a any camera issue, enable or disable this)"),
+		var option:Option = new Option('Old Camera System',
+			"If checked, game uses old camera system instead of new one.\n(If you have a any camera issue, enable or disable this)",
 			'oldCameraSystem',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Disable Camera Rotate'),
-			Language.getText("If checked, camera angle works like in Codename Engine,\nThis is useful for some CNE mods like Cyber Sensation"),
-			'disableCameraRotate',
+		var option:Option = new Option('Alternative Camera',
+			"If checked, camera updates directly instead of waiting to next section",
+			'alterCamera',
 			'bool');
 		addOption(option);
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
-		var option:Option = new Option(Language.getText('Downscroll'), //Name
-			Language.getText('If checked, notes go Down instead of Up, simple enough.'), //Description
+		var option:Option = new Option('Downscroll', //Name
+			'If checked, notes go Down instead of Up, simple enough.', //Description
 			'downScroll', //Save data variable name
 			'bool'); //Variable type
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Middlescroll'),
-			Language.getText('If checked, your notes get centered.'),
+		var option:Option = new Option('Middlescroll',
+			'If checked, your notes get centered.',
 			'middleScroll',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Opponent Notes'),
-			Language.getText('If unchecked, opponent notes get hidden.'),
+		var option:Option = new Option('Opponent Notes',
+			'If unchecked, opponent notes get hidden.',
 			'opponentStrums',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Ghost Tapping'),
-			Language.getText("If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit."),
+		var option:Option = new Option('Ghost Tapping',
+			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
 			'ghostTapping',
 			'bool');
 		addOption(option);
 		
-		var option:Option = new Option(Language.getText('Auto Pause'),
-			Language.getText("If checked, the game automatically pauses if the screen isn't on focus."),
+		var option:Option = new Option('Auto Pause',
+			"If checked, the game automatically pauses if the screen isn't on focus.",
 			'autoPause',
 			'bool');
 		addOption(option);
 		option.onChange = onChangeAutoPause;
 
-		var option:Option = new Option(Language.getText('Disable Reset Button'),
-			Language.getText("If checked, pressing Reset won't do anything."),
+		var option:Option = new Option('Disable Reset Button',
+			"If checked, pressing Reset won't do anything.",
 			'noReset',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Hitsound Volume'),
-			Language.getText('Funny notes does "Tick!" when you hit them.'),
+		var option:Option = new Option('Hitsound Volume',
+			'Funny notes does \"Tick!\" when you hit them."',
 			'hitsoundVolume',
 			'percent');
 		addOption(option);
@@ -70,8 +68,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
 
-		var option:Option = new Option(Language.getText('Rating Offset'),
-			Language.getText('Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.'),
+		var option:Option = new Option('Rating Offset',
+			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
 			'ratingOffset',
 			'int');
 		option.displayFormat = '%vms';
@@ -112,8 +110,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		// option.maxValue = 135;
 		// addOption(option);
 
-		var option:Option = new Option(Language.getText('Safe Frames'),
-			Language.getText('Changes how many frames you have for\nhitting a note earlier or late.'),
+		var option:Option = new Option('Safe Frames',
+			'Changes how many frames you have for\nhitting a note earlier or late.',
 			'safeFrames',
 			'float');
 		option.scrollSpeed = 5;
@@ -122,55 +120,120 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Disable Note Modchart'),
-			Language.getText('If checked, strum notes will no longer move or change their opacity to invisible.'),
+		var option:Option = new Option('Disable Note Modchart',
+			'If checked, strum notes will no longer move or change their opacity to invisible.',
 			'disableStrumMovement',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Disable Recording Replays'),
-			Language.getText('If checked, the game will no longer record your gameplay, this will cause your scores to not be submitted to the leaderboard!'),
-			'disableReplays',
-			'bool');
-		addOption(option);
-
-		var option:Option = new Option(Language.getText('Disable Leaderboard Submiting'),
-			Language.getText('If checked, the game will no longer submit your replays to the leaderboard\nCan be toggled in-game with F2'),
-			'disableSubmiting',
-			'bool');
-		addOption(option);
-
-		var option:Option = new Option(Language.getText('Disable Lag Detection'),
-			Language.getText('If checked, the game will no longer rewind 3 seconds when a lag is detected'),
-			'disableLagDetection',
-			'bool');
-		addOption(option);
-
-		var option:Option = new Option(Language.getText('Modchart Skin Changes'),
-			Language.getText('If enabled, the song events will change the character of your active skin'),
+		var option:Option = new Option('Modchart Skin Changes',
+			'If enabled, the song events will change the character of your active skin',
 			'modchartSkinChanges',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Note Underlay Opacity'),
-			Language.getText('If higher than 0%, an underlay will be displayed behind player notes.'),
-			'noteUnderlayOpacity',
-			'percent');
+		var option:Option = new Option('Disable Lag Detection',
+			'If checked, the game will no longer rewind 3 seconds when a lag is detected',
+			'disableLagDetection',
+			'bool');
 		addOption(option);
-		option.scrollSpeed = 1.6;
-		option.minValue = 0.0;
-		option.maxValue = 1;
-		option.changeValue = 0.05;
-		option.decimals = 2;
+	}
 
-		var option:Option = new Option(Language.getText('Note Underlay Type:'),
-			Language.getText("How should the game render note underlays."),
-			'noteUnderlayType',
-			'string',
-			[Language.getText('All-In-One'), Language.getText('By Note')]);
+	function openPreferences() {
+		#if CHECK_FOR_UPDATES
+		var option:Option = new Option('Check for Updates',
+			'On Release builds, turn this on to check for updates when you start the game.',
+			'checkForUpdates',
+			'bool');
 		addOption(option);
+		#end
+
+		#if DISCORD_ALLOWED
+		var option:Option = new Option('Discord Rich Presence',
+			"Uncheck this to prevent accidental leaks, it will hide the Application from your \"Playing\" box on Discord",
+			'discordRPC',
+			'bool');
+		addOption(option);
+		#end
+		
+		var option:Option = new Option('Disable Recording Replays',
+			'If checked, the game will no longer record your gameplay, this will cause your scores to not be submitted to the leaderboard!',
+			'disableReplays',
+			'bool');
+		addOption(option);
+
+		var option:Option = new Option('Disable Leaderboard Submiting',
+			'If checked, the game will no longer submit your replays to the leaderboard\nCan be toggled in-game with F2',
+			'disableSubmiting',
+			'bool');
+		addOption(option);
+
+		var option:Option = new Option('Disable Automatic Downloads',
+			'Disables automatic downloads of Mods and Skins from the opponent',
+			'disableAutoDownloads',
+			'bool');
+		addOption(option);
+
+		var option:Option = new Option('Pause Screen Song:',
+			"What song do you prefer for the Pause Screen?",
+			'pauseMusic',
+			'string',
+			['None', 'Breakfast', 'Tea Time']);
+		addOption(option);
+		option.onChange = onChangePauseMusic;
+
+		var option:Option = new Option('Group Songs:',
+			"How should songs on Freeplay menu be group by?",
+			'groupSongsBy',
+			'string',
+			FreeplayState.GROUPS);
+		addOption(option);
+
+		var option:Option = new Option('Favorite Tracks Menu Theme',
+			'If checked, the game will be picking your random favorite song as the main menu theme!',
+			'favsAsMenuTheme',
+			'bool');
+		option.onChange = () -> {
+			states.TitleState.playFreakyMusic();
+		};
+		addOption(option);
+
+		var option:Option = new Option('Debug Mode',
+			"If checked, enables debug warnings etc.",
+			'debugMode',
+			'bool');
+		addOption(option);
+	}
+
+	public function new(category:String)
+	{
+		title = category;
+		rpcTitle = 'Game Settings Menu'; //for Discord Rich Presence
+
+		switch (category) {
+			case 'Gameplay':
+				openGameOptions();
+			case 'Preferences':
+				openPreferences();
+		}
 
 		super();
+	}
+
+	var changedMusic:Bool = false;
+	function onChangePauseMusic()
+	{
+		if(ClientPrefs.data.pauseMusic == 'None')
+			FlxG.sound.music.volume = 0;
+		else
+			FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.data.pauseMusic)));
+
+		changedMusic = true;
+	}
+
+	override function destroy() {
+		if(changedMusic && !OptionsState.onPlayState) states.TitleState.playFreakyMusic();
+		super.destroy();
 	}
 
 	function onChangeHitsoundVolume()

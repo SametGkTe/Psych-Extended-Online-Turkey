@@ -75,38 +75,77 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		#if ios
+		CoolUtil.showPopUp("trace 11", "none");
+		#end
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+
+		#if ios
+		CoolUtil.showPopUp("trace 12", "none");
+		#end
 
 		#if LUA_ALLOWED
 		Mods.pushGlobalMods();
 		#end
 		Mods.loadTopMod();
 
+		#if ios
+		CoolUtil.showPopUp("trace 13", "none");
+		#end
+
 		FlxG.fixedTimestep = false;
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
+		#if ios
+		CoolUtil.showPopUp("trace 14", "none");
+		#end
+
 		curWacky = FlxG.random.getObject(getIntroTextShit());
+
+		#if ios
+		CoolUtil.showPopUp("trace 15", "none");
+		#end
 
 		super.create();
 
 		FlxG.save.bind('funkin', CoolUtil.getSavePath());
 		online.network.Auth.load();
 
+		#if ios
+		CoolUtil.showPopUp("trace 16", "none");
+		#end
+
 		ClientPrefs.loadPrefs();
 		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
+		#if ios
+		CoolUtil.showPopUp("trace 17", "none");
+		#end
 
 		#if VIDEOS_ALLOWED
 		hxvlc.util.Handle.init(#if (hxvlc >= "1.8.0")  ['--no-lua'] #end);
+		#end
+
+		#if ios
+		CoolUtil.showPopUp("trace 18", "none");
 		#end
 
 		backend.NoteSkinData.reloadNoteSkins();
 
 		Highscore.load();
 
+		#if ios
+		CoolUtil.showPopUp("trace 19", "none");
+		#end
+
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
+
+		#if ios
+		CoolUtil.showPopUp("trace 20", "none");
+		#end
 
 		#if TITLE_SCREEN_EASTER_EGG
 		if (FlxG.save.data.psychDevsEasterEgg == null) FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
@@ -136,13 +175,9 @@ class TitleState extends MusicBeatState
 			#if TOUCH_CONTROLS
 			MobileConfig.init('MobileControls', CoolUtil.getSavePath(), 'assets/mobile/',
 				[
-					'MobilePad/DPadModes',
-					'MobilePad/ActionModes',
-					'Hitbox/HitboxModes',
-				], [
-					DPAD,
-					ACTION,
-					HITBOX
+					['MobilePad/DPadModes', ButtonModes.DPAD],
+					['MobilePad/ActionModes', ButtonModes.ACTION],
+					['Hitbox/HitboxModes', ButtonModes.HITBOX]
 				]
 			);
 			#end
@@ -172,16 +207,22 @@ class TitleState extends MusicBeatState
 			FlxG.switchState(() -> new FlashingState());
 		} else {
 			if (initialized)
-				startIntro();
+				startCutscenesIn();
 			else
 			{
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					startIntro();
+					startCutscenesIn();
 				});
 			}
 		}
 		#end
+	}
+
+	function startCutscenesIn()
+	{
+		if (event("onCutscenesIn", new CancellableEvent()).cancelled) return;
+		startIntro();
 	}
 
 	var logoBl:FlxSprite;
@@ -192,6 +233,7 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
+		if (event("onStartIntro", new CancellableEvent()).cancelled) return;
 		if (!initialized)
 		{
 			if(FlxG.sound.music == null) {
@@ -324,6 +366,8 @@ class TitleState extends MusicBeatState
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
+
+		if (event("onStartIntroPost", new CancellableEvent()).cancelled) return;
 
 		if (initialized)
 			skipIntro();
@@ -549,7 +593,7 @@ class TitleState extends MusicBeatState
 				misses: FlxG.random.int(0, 50),
 				score: FlxG.random.int(5, 999999999),
 				accuracy: 1, //FlxG.random.float(0, 1),
-				character: (ClientPrefs.data.modSkin ?? [])[1],
+				character: (ClientPrefs.data.currentSkin ?? [])[0],
 				difficultyName: 'nightmare',
 				points: FlxG.random.int(0, 100)
 			}));
@@ -611,6 +655,7 @@ class TitleState extends MusicBeatState
 		}
 
 		if(!closedState) {
+			if (event("onPreIntroStarted", new CancellableEvent()).cancelled) return;
 			sickBeats++;
 			switch (sickBeats)
 			{
@@ -676,6 +721,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 				case 17:
+					if (event("onPreIntroFinished", new CancellableEvent()).cancelled) return;
 					skipIntro();
 			}
 		}
@@ -685,6 +731,7 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
+		if (event("onSkipIntro", new CancellableEvent()).cancelled) return;
 		if (!skippedIntro)
 		{
 			if (playJingle) //Ignore deez

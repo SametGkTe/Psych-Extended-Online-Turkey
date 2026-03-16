@@ -91,10 +91,6 @@ class ControlsSubState extends MusicBeatSubstate
 	var lastID:Int = 0;
 	function createTexts()
 	{
-		defaultKey = Language.getText('Reset to Default Keys');
-		switchInput = Language.getText('Switch Input Device');
-		switchMania = Language.getText('Switch Note Mania');
-
 		options = [[true, Language.getText('NOTES') + ' ${Note.maniaKeys}k']];
 
 		if (Note.maniaKeys != 4) {
@@ -103,7 +99,7 @@ class ControlsSubState extends MusicBeatSubstate
 					true,
 					Language.getText('Note') + ' ${key}',
 					'${Note.maniaKeys}k_note_${key}',
-					'${Note.maniaKeys}k ' + Language.getText('Note') + ' ${key}'
+					'${Note.maniaKeys}k ' + Language.getText('Note') + ' 1'
 				]);
 			}
 		}

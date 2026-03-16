@@ -104,10 +104,10 @@ class PauseSubState extends MusicBeatSubstate
 				pauseMusic.loadEmbedded(Paths.music(songName), true, true);
 			} else if (songName != 'None') {
 				var msc = null;
-				if (ClientPrefs.data.modSkin != null) {
-				ShitUtil.tempSwitchMod(ClientPrefs.data.modSkin[0], () -> {
-						msc = Paths.music(Paths.formatToSongPath(ClientPrefs.data.pauseMusic + '-' + ClientPrefs.data.modSkin[1]));
-				});
+				if (ClientPrefs.data.currentSkin != null) {
+					ShitUtil.tempSwitchMod(ClientPrefs.data.currentSkin[3], () -> {
+						msc = Paths.music(Paths.formatToSongPath(ClientPrefs.data.pauseMusic + '-' + ClientPrefs.data.currentSkin[0]));
+					});
 				}
 				msc ??= Paths.music(Paths.formatToSongPath(ClientPrefs.data.pauseMusic));
 				pauseMusic.loadEmbedded(msc, true, true);
@@ -421,7 +421,7 @@ class PauseSubState extends MusicBeatSubstate
 						'Playback Rate',
 						'Run Script',
 						'Swap Sides',
-						'Chart Edtor',
+						'Chart Editor',
 						'Character Editor',
 						'Position Debug',
 						'Swing Mode'
@@ -442,7 +442,7 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Position Debug': 
 					PlayState.instance.debugPoser.editMode = !PlayState.instance.debugPoser.editMode;
 					close();
-				case 'Chart Edtor':
+				case 'Chart Editor':
 					PlayState.instance.openChartEditor();
 					close();
 				case 'Character Editor':
@@ -521,6 +521,9 @@ class PauseSubState extends MusicBeatSubstate
 			curSelected = menuItems.length - 1;
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
+
+		#if SCRIPTING_ALLOWED call('onSelectItem', [curSelected]); #end
+		#if SCRIPTING_ALLOWED call('changeSelection', [curSelected]); #end
 
 		var bullShit:Int = 0;
 

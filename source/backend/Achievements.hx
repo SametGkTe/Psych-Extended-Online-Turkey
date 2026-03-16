@@ -46,6 +46,7 @@ class Achievements {
 		createAchievement('week5_nomiss',			{name: "Missless Christmas", description: "Beat Week 5 on Hard with no Misses."});
 		createAchievement('week6_nomiss',			{name: "Highscore!!", description: "Beat Week 6 on Hard with no Misses."});
 		createAchievement('week7_nomiss',			{name: "God Effing Damn It!", description: "Beat Week 7 on Hard with no Misses."});
+		createAchievement('weekend1_nomiss',		{name: "Just a Friendly Sparring", description: "Beat Weekend 1 on Hard with no Misses."});
 
 		createAchievement('ur_bad',					{name: "What a Funkin' Disaster!", description: "Complete a Song with a rating lower than 20%."});
 		createAchievement('ur_good',				{name: "Perfectionist", description: "Complete a Song with a rating of 100%."});
@@ -57,11 +58,6 @@ class Achievements {
 		createAchievement('debugger',				{name: "Debugger", description: "Beat the \"Test\" Stage from the Chart Editor.", hidden: true});
 
 		createAchievement('1000combo',				{name: "It's over 1000!", description: "Completed a Song with combo higher than 1000.", hidden: true});
-		#if TURKIYE_BUILD
-		createAchievement('turkiye',				{name: "NE MUTLU TÜRKÜM DİYENE!", description: "AS BAYRAKLI AS!", hidden: true});
-		createAchievement('peto',				{name: "Oynadığın İçin Teşekkürler! :D", description: "Psych Engine Türkiye Online'ın Oyuncularından Ol."});
-		createAchievement('abonem',				{name: "Abonem Kalmadı!", description: "Abonelerin Hepsini Öldürdün!", hidden: true});
-		#end
 
 		//dont delete this thing below
 		_originalLength = _sortID + 1;

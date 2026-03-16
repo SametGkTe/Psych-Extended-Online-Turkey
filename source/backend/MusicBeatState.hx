@@ -4,11 +4,8 @@ import flixel.addons.ui.FlxUIState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxState;
 
-#if TOUCH_CONTROLS
-import mobile.MobileControlManager;
-import mobile.objects.FunkinMobilePad;
-import mobile.objects.FunkinHitbox;
-import mobile.objects.FunkinJoyStick;
+#if SCRIPTING_ALLOWED
+import funkin.backend.scripting.HScript;
 #end
 
 class MusicBeatState extends FlxUIState
@@ -19,6 +16,7 @@ class MusicBeatState extends FlxUIState
 
 	public static var instance:MusicBeatState;
 
+	/** stops time **/
 	private var theWorld:Bool = false;
 
 	public var curSection:Int = 0;
@@ -37,6 +35,13 @@ class MusicBeatState extends FlxUIState
 	{
 		return Controls.instance;
 	}
+	
+	#if !SCRIPTING_ALLOWED
+	function new() {
+		super();
+		mobileManager = new MobileControlManager();
+	}
+	#end
 
 	public var mobileManager:MobileControlManager;
 	//makes code less messy & easier to write
@@ -68,14 +73,15 @@ class MusicBeatState extends FlxUIState
 		return false;
 		#end
 	}
-	public function new() {
-		super();
-		mobileManager = new MobileControlManager(this);
-	}
 
 	override function destroy()
 	{
 		if (mobileManager != null) mobileManager.destroy();
+		#if SCRIPTING_ALLOWED
+		call("destroy");
+		stateScripts = FlxDestroyUtil.destroy(stateScripts);
+		#end
+
 		super.destroy();
 	}
 
@@ -87,6 +93,12 @@ class MusicBeatState extends FlxUIState
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 		#if MODS_ALLOWED Mods.updatedOnState = false; #end
 
+		add(mobileManager);
+
+		#if SCRIPTING_ALLOWED
+		loadScript();
+		#end
+
 		super.create();
 
 		if(!skip) {
@@ -94,6 +106,10 @@ class MusicBeatState extends FlxUIState
 		}
 		FlxTransitionableState.skipNextTransOut = false;
 		timePassedOnState = 0;
+
+		#if SCRIPTING_ALLOWED
+		call("create");
+		#end
 	}
 
 	public static var timePassedOnState:Float = 0;
@@ -129,6 +145,8 @@ class MusicBeatState extends FlxUIState
 		stagesFunc(function(stage:BaseStage) {
 			stage.update(elapsed);
 		});
+
+		#if SCRIPTING_ALLOWED call("update", [elapsed]); #end
 
 		super.update(elapsed);
 	}
@@ -214,6 +232,8 @@ class MusicBeatState extends FlxUIState
 			stage.curDecStep = curDecStep;
 			stage.stepHit();
 		});
+		#if GLOBAL_SCRIPT GlobalScript.stepHit(curStep); #end
+		call("stepHit", [curStep]);
 
 		if (curStep % 4 == 0)
 			beatHit();
@@ -228,6 +248,8 @@ class MusicBeatState extends FlxUIState
 			stage.curDecBeat = curDecBeat;
 			stage.beatHit();
 		});
+		#if GLOBAL_SCRIPT GlobalScript.beatHit(curBeat); #end
+		call("beatHit", [curBeat]);
 	}
 
 	public function sectionHit():Void
@@ -237,6 +259,7 @@ class MusicBeatState extends FlxUIState
 			stage.curSection = curSection;
 			stage.sectionHit();
 		});
+		call("measureHit", [curSection]);
 	}
 
 	function stagesFunc(func:BaseStage->Void)
@@ -266,5 +289,116 @@ class MusicBeatState extends FlxUIState
 			return FlxMath.lerp(v1, v2, ratio);
 		else
 			return CoolUtil.fpsLerp(v1, v2, ratio);
+	}
+
+	/**
+	 * SCRIPTING STUFF
+	 */
+	#if SCRIPTING_ALLOWED
+	public var scriptsAllowed:Bool = true;
+
+	/**
+	 * Current injected script attached to the state. To add one, create a file at path "data/states/stateName" (ex: data/states/FreeplayState)
+	 */
+	public var stateScripts:ScriptPack;
+
+	public static var lastScriptName:String = null;
+	public static var lastStateName:String = null;
+
+	public var scriptName:String = null;
+
+	public function new(scriptsAllowed:Bool = true, ?scriptName:String) {
+		super();
+		mobileManager = new MobileControlManager();
+		if(lastStateName != (lastStateName = Type.getClassName(Type.getClass(this)))) {
+			lastScriptName = null;
+		}
+		this.scriptName = scriptName != null ? scriptName : lastScriptName;
+		lastScriptName = this.scriptName;
+	}
+
+	function loadScript(?customPath:String) {
+		var className = Type.getClassName(Type.getClass(this));
+		if (stateScripts == null)
+			(stateScripts = new ScriptPack(className)).setParent(this);
+		if (scriptsAllowed) {
+			if (stateScripts.scripts.length == 0) {
+				var scriptName = this.scriptName != null ? this.scriptName : className.substr(className.lastIndexOf(".")+1);
+				var filePath:String = "states/" + scriptName;
+				if (customPath != null)
+					filePath = customPath;
+				var path = Paths.script('data/' + filePath);
+				var script = Script.create(path);
+				if (script is DummyScript) {
+				} else {
+					script.remappedNames.set(script.fileName, '${script.fileName}');
+					stateScripts.add(script);
+					script.load();
+					call('create');
+				}
+			}
+		}
+	}
+	#end
+
+	public function call(name:String, ?args:Array<Dynamic>, ?defaultVal:Dynamic):Dynamic {
+		// calls the function on the assigned script
+		#if SCRIPTING_ALLOWED
+		if(stateScripts != null)
+			return stateScripts.call(name, args);
+		#end
+		return defaultVal;
+	}
+
+	public function event<T:CancellableEvent>(name:String, event:T):T {
+		#if SCRIPTING_ALLOWED
+		if(stateScripts != null)
+			stateScripts.call(name, [event]);
+		#end
+		return event;
+	}
+
+	override function closeSubState() {
+		super.closeSubState();
+		call('onCloseSubState');
+	}
+
+	public function closeSubStatePost() {
+		call('onCloseSubStatePost');
+	}
+
+	public override function createPost() {
+		super.createPost();
+		//persistentUpdate = true;
+		call("postCreate");
+	}
+
+	public override function tryUpdate(elapsed:Float):Void
+	{
+		if (persistentUpdate || subState == null) {
+			call("preUpdate", [elapsed]);
+			update(elapsed);
+			call("postUpdate", [elapsed]);
+		}
+
+		if (_requestSubStateReset)
+		{
+			_requestSubStateReset = false;
+			resetSubState();
+		}
+		if (subState != null)
+		{
+			subState.tryUpdate(elapsed);
+		}
+	}
+
+	public override function onFocus() {
+		super.onFocus();
+		call("onFocus");
+	}
+
+	public override function onFocusLost() {
+		super.onFocusLost();
+		call("onFocusLost");
 	}
 }

@@ -7,13 +7,8 @@
 	<architecture exclude="arm64" if="ONLY_ARMV7" />
 	<architecture exclude="arm64-v8a" if="ONLY_ARMV7" />
 
-	<section unless="TURKIYE_BUILD">
-		<app title="Psych Extended Online" file="PsychExtendedOnline" main="Main" version="0.14.0" packageName="com.arkoselabs.psychdextendedonline" package="com.arkoselabs.psychdextendedonline" company="ArkoseLabs" />
-	</section>
-	
-	<section if="ios && !TURKIYE_BUILD">
-		<app title="Psych Extended Online" file="PsychExtendedOnline" main="Main" version="0.14.0" packageName="com.arkoselabs.psychdextendedonline" package="com.arkoselabs.psychdextendedonline" company="ArkoseLabs" />
-	</section>
+	<app title="Friday Night Funkin': Psych Extended Online" file="PsychExtendedOnline" main="Main" packageName="com.arkoselabs.psychdextendedonline" package="com.arkoselabs.psychdextendedonline" company="ArkoseLabs" version="0.14.3" />
+	<app if="mobile" title='Psych Extended Online' />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -33,16 +28,16 @@
 
 	<haxedef name="FLX_CNE_FORK" />
 	<define name="HSC_ALLOWED" />
-	<define name="TURKIYE_BUILD" if="turkiye" />
+	<define name="SCRIPTING_ALLOWED" />
+	<define name="TRANSLATIONS_ALLOWED" />
 
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
 
-	<!-- <define name="legacy_lime" /> --> <!-- Enables legacy lime -->
 	<define name="MODS_ALLOWED" />
 	<define name="HSCRIPT_ALLOWED" />
 	<define name="LUA_ALLOWED" if="cpp" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="DISCORD_ALLOWED" if="desktop" unless="hl" />
+	<define name="DISCORD_ALLOWED" if="desktop || android" unless="hl" />
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" />
 	<define name="PSYCH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="TITLE_SCREEN_EASTER_EGG" /> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build -->
@@ -73,6 +68,8 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
 
+	<classpath name="source_angle" if="ANGLE_BUILD" />
+	<classpath name="source_default" unless="ANGLE_BUILD" />
 	<classpath name="source" />
 	<classpath name="library_extended" />
 
@@ -82,6 +79,7 @@
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL" />
 
+	<assets path="assets/fonts" />
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web" />
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web" />
 	<section if="TITLE_SCREEN_EASTER_EGG">
@@ -103,16 +101,6 @@
 		<library name="songs" preload="false" />
 		<library name="shared" preload="false" />
 		<library name="week_assets" preload="false" />
-	</section>
-
-	<section if="TURKIYE_BUILD">
-		<assets path="assets_turkish/fonts" rename="assets/fonts" />
-		<assets path="assets_turkish/preload" rename="assets" unless="web" />
-		<assets path="assets_turkish/shared" rename="assets/shared" library="shared" unless="web" />
-	</section>
-	<section unless="TURKIYE_BUILD">
-		<assets path="assets_english/fonts" rename="assets/fonts" />
-		<assets path="assets_english/preload" rename="assets" unless="web" />
 	</section>
 
 	<assets path="assets/videos" library="videos" if="VIDEOS_ALLOWED" />
@@ -145,7 +133,6 @@
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-addons" />
 	<!-- Mobile Libraries -->
-	<haxelib name="extension-androidtools" if="legacy_lime"/>
 	<haxelib name="mobile-controls"/>
 	<haxedef name="mobile_controls_file_support"/>
 	<haxedef name="mobile_controls_allow_mouse_clicks" if="desktop"/>
@@ -155,7 +142,9 @@
 	<haxelib name="hscript-improved" if="HSC_ALLOWED" />
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED" />
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED" />
-	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED" />
+	<section if="desktop">
+		<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED" />
+	</section>
 	<haxelib name="tjson" />
 	<haxelib name="colyseus" />
 	<haxelib name="HtmlParser" />
@@ -215,7 +204,7 @@
 	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
-	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<haxedef name="FLX_NO_DEBUG" /> <!-- worst debugger ever lol -->
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
@@ -238,6 +227,9 @@
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
 
+	<haxeflag name="-D" value="HXCPP_DEBUGGER" if="debug"/>
+	<haxeflag name="-debug" if="debug"/>
+
 	<section if='debugmon'>
 		<haxeflag name="--macro" value="addGlobalMetadata('online', '@:build(online.backend.MonitorMacro.build())')" />
 		<haxeflag name="--macro" value="addGlobalMetadata('states', '@:build(online.backend.MonitorMacro.build())')" />
@@ -254,36 +246,12 @@
 
 	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
 	<haxedef name="DISABLE_AUDIO_FOCUS" if="android" /> <!-- Disable the fucking audio focus -->
-	
-	<!-- Mobile Shit -->
-	<section if="legacy_lime">
-		<section if="android">
-			<config:android permission="android.permission.MANAGE_MEDIA"/> 
-			<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-			<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-			<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
-			<config:android permission="android.permission.READ_MEDIA_IMAGES"/>
-			<config:android permission="android.permission.READ_MEDIA_AUDIO"/>
-			<config:android permission="android.permission.READ_MEDIA_VIDEO"/>
-			<config:android permission="android.permission.VIBRATE" />
-			<config:android permission="android.permission.INTERNET" />
-			<config:android permission="android.permission.ACCESS_WIFI_STATE"/>
-			<config:android permission="android.permission.ACCESS_NETWORK_STATE" />
-			<config:android permission="android.permission.CAPTURE_AUDIO_OUTPUT" />
-			<android target-sdk-version="35" />
-			<android min-sdk-version="24" />
-		</section>
-	</section>
 
 	<!-- Category Type for Apple Systems -->
 	<config:ios category_type="public.app-category.music-games" />
 	<config:mac category_type="public.app-category.music-games" />
-	
-	<!-- Lime Fix -->
-	<section unless="legacy_lime">
-		<haxedef name="lime_use_old_deltatime" />
-		<haxedef name="lime_disable_motion_sensors" />
-	</section>
+
+	<haxedef name="openfl_dpi_aware" />
 
 	<!-- Haxe 4.3.0+: Enable pretty syntax errors and stuff. -->
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
@@ -297,7 +265,23 @@
 		 Reduces compilation time at the cost of limited HScript flexibility. !-->
 	<define name="CUSTOM_CLASSES" unless="STRIPPED_COMPILE" />
 
+	<!-- Comment this out to disable abstract support in hscript. !-->
+	<haxedef name="HSCRIPT_ABSTRACT_SUPPORT" unless="STRIPPED_COMPILE" />
+
 	<!-- _________________________________ Custom _______________________________ -->
+
+	<!-- Basic Support For Kizzy -->
+	<java path="source/mobile/android/" if="android" />
+	<java path="mobile/android/" if="android" />
+
+	<!-- Category Type for Apple Systems -->
+	<config:ios category_type="public.app-category.music-games" />
+	<config:mac category_type="public.app-category.music-games" />
+
+	<section unless="ANGLE_BUILD">
+		<haxedef name="lime_use_old_deltatime" />
+		<haxedef name="lime_disable_motion_sensors" />
+	</section>
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 

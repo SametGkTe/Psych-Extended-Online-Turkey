@@ -1,4 +1,4 @@
-name: Build Psych Online Mobile
+name: Build Psych Extended Online
 
 on: workflow_dispatch
 
@@ -9,31 +9,43 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Android
+          - name: Android-NORMAL
             os: ubuntu-latest
+            setupCommand: sh ./setup/unix-alter.sh
             buildArgs: "android -ONLY_ARM64"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
-          - name: Windows
+            doCache: "YES"
+
+          - name: Android-(ARMV7)-NORMAL
+            os: ubuntu-latest
+            setupCommand: sh ./setup/unix-alter.sh
+            buildArgs: "android -ONLY_ARMV7"
+            artifactName: androidBuild-Armv7
+            artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
+            doCache: "NO"
+            
+          - name: Windows-NORMAL
             os: windows-latest
+            setupCommand: .\"setup/windows.bat"
             buildArgs: "windows -D officialBuild -final"
             artifactName: windowsBuild-x86_64
             artifactPath: export\release\windows\bin\*
-          - name: Android-TR
-            os: ubuntu-latest
-            buildArgs: "android -ONLY_ARM64 -D turkiye"
-            artifactName: androidBuild-TR
-            artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
-          - name: Windows-TR
-            os: windows-latest
-            buildArgs: "windows -D officialBuild -final -D turkiye"
-            artifactName: windowsBuild-TR-x86_64
-            artifactPath: export\release\windows\bin\*
+            doCache: "YES"
+            
+          - name: iOS-NORMAL
+            os: macos-15
+            setupCommand: sh ./setup/unix.sh
+            buildArgs: "ios -final -nosign -D officialBuild"
+            artifactName: iOSBuild
+            artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
+            doCache: "YES"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
         os: ${{ matrix.os }}
+        setupCommand: ${{ matrix.setupCommand }}
         buildArgs: ${{ matrix.buildArgs }}
-        assetType: ${{ matrix.assetType }}
         artifactName: ${{ matrix.artifactName }}
         artifactPath: ${{ matrix.artifactPath }}
+        doCache: ${{ matrix.doCache }}

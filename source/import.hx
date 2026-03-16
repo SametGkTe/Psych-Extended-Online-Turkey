@@ -16,7 +16,6 @@ import funkin.backend.utils.*;
 import funkin.backend.assets.*;
 import funkin.backend.FunkinSprite;
 import funkin.backend.utils.XMLUtil;
-import funkin.backend.scripting.events.sprite.PlayAnimContext;
 import funkin.backend.system.interfaces.IBeatReceiver;
 import funkin.backend.system.interfaces.IOffsetCompatible;
 import funkin.backend.utils.XMLUtil.AnimData;
@@ -85,6 +84,8 @@ import flixel.sound.FlxSound;
 import flixel.system.FlxSound;
 #end
 import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.util.FlxDestroyUtil;
@@ -98,7 +99,13 @@ import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxPoint;
+#if ANGLE_BUILD
+import flixel.system.FlxAssets.FlxShader;
+#else
 import shaders.flixel.system.FlxShader;
+#end
+import funkin.backend.scripting.DebugText;
+import funkin.game.Stage;
 import haxe.ds.StringMap;
 import online.backend.Deflection;
 
@@ -115,6 +122,7 @@ import backend.FunkinFileSystem;
 #if TOUCH_CONTROLS
 import mobile.ScreenUtil;
 import mobile.MobileConfig;
+import mobile.MobileConfig.ButtonModes;
 import mobile.MobileButton;
 import mobile.backend.StorageUtil;
 import mobile.substates.MobileExtraControl;
@@ -122,17 +130,6 @@ import mobile.substates.MobileExtraControl;
 import mobile.MobileControlManager;
 //Android
 #if android
-#if legacy_lime
-import extension.androidtools.callback.CallBack as AndroidCallBack;
-import extension.androidtools.content.Context as AndroidContext;
-import extension.androidtools.widget.Toast as AndroidToast;
-import extension.androidtools.os.Environment as AndroidEnvironment;
-import extension.androidtools.Permissions as AndroidPermissions;
-import extension.androidtools.Settings as AndroidSettings;
-import extension.androidtools.Tools as AndroidTools;
-import extension.androidtools.os.Build.VERSION as AndroidVersion;
-import extension.androidtools.os.Build.VERSION_CODES as AndroidVersionCode;
-#else
 import android.callback.CallBack as AndroidCallBack;
 import android.content.Context as AndroidContext;
 import android.widget.Toast as AndroidToast;
@@ -142,7 +139,6 @@ import android.Settings as AndroidSettings;
 import android.Tools as AndroidTools;
 import android.os.Build.VERSION as AndroidVersion;
 import android.os.Build.VERSION_CODES as AndroidVersionCode;
-#end
 #end
 
 import online.backend.Deflection;

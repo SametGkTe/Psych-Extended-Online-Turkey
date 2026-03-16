@@ -20,13 +20,13 @@ class OnlineState extends MusicBeatState {
 	var items:FlxTypedSpriteGroup<FlxText>;
 
 	var itms:Array<String> = [
-		Language.getText("JOIN"),
-		Language.getText("HOST"),
-		Language.getText("FIND"),
-		Language.getText("OPTIONS"),
-		Language.getText("LEADERBOARD"),
-		Language.getText("MOD DOWNLOADER")
-	];
+        "JOIN",
+        "HOST",
+        "FIND",
+		"OPTIONS",
+		"LEADERBOARD",
+		"MOD DOWNLOADER"
+    ];
 
 	// var networkPlayer:FlxText;
 	// var networkBg:FlxSprite;
@@ -67,6 +67,7 @@ class OnlineState extends MusicBeatState {
 	var twitter:FlxSprite;
 
     function onRoomJoin(err:Dynamic) {
+		trace(err);
 		if (err != null) {
 			disableInput = false;
 			return;
@@ -78,11 +79,11 @@ class OnlineState extends MusicBeatState {
     }
 
 	function getItemName(item:String) {
-		if (curSelected == 0 && Language.getText("JOIN") && inputWait)
+		if (curSelected == 0 && item == "JOIN" && inputWait)
 		{
 			return Language.getText("JOIN CODE: ") + inputString;
 		}
-		return item;
+		return Language.getText(item);
 	}
 
     override function create() {
@@ -276,6 +277,7 @@ class OnlineState extends MusicBeatState {
 		frontMessage.x = FlxG.width - frontMessage.fieldWidth - 50;
 		add(frontMessage);
 
+		final theus = this;
 		Thread.run(() -> {
 			FunkinNetwork.ping();
 
@@ -283,7 +285,8 @@ class OnlineState extends MusicBeatState {
 				Waiter.put(() -> {
 					var profileBox = new ProfileBox(FunkinNetwork.nickname, true);
 					profileBox.setPosition(FlxG.width - profileBox.width - 20, 20);
-					add(profileBox);
+					if (FlxG.state == theus)
+						add(profileBox);
 				});
 		});
 
@@ -291,7 +294,7 @@ class OnlineState extends MusicBeatState {
 			var data = FunkinNetwork.fetchFront();
 			Waiter.put(() -> {
 				if (data == null) {
-					playersOnline.text =  Language.getText("NETWORK OFFLINE");
+					playersOnline.text = Language.getText("NETWORK OFFLINE");
 					// networkPlayer.visible = false;
 					// networkBg.visible = false;
 				}
@@ -313,6 +316,7 @@ class OnlineState extends MusicBeatState {
 		FlxG.mouse.visible = true;
 		
 		mobileManager.addMobilePad('NONE', 'B');
+		mobileManager.addMobilePadCamera();
     }
 
 	override function destroy() {
@@ -364,33 +368,22 @@ class OnlineState extends MusicBeatState {
 
 			if (controls.ACCEPT || (FlxG.mouse.justPressed && mouseInItems)) {
 				switch (itms[curSelected].toLowerCase()) {
-					case 0: //JOIN
+					case "join":
 						FlxG.stage.window.textInputEnabled = true;
 						inputWait = true;
-					case 1: //FIND
+					case "find":
 						disableInput = true;
 						// FlxG.openURL(GameClient.serverAddress + "/rooms");
 						FlxG.switchState(() -> new FindRoomState());
-					case 2: //HOST
-						var count:Float = 0;
-						for (mod in Mods.getModDirectories()) {
-							var url = OnlineMods.getModURL(mod);
-							if (url == null || !(url.startsWith('https://') || url.startsWith('http://')))
-								count++;
-						}
-
-						if (count > 0) {
-							Alert.alert(Language.getText('WARNING'), count + Language.getText(' of your mods do not have a valid URL set!'));
-						}
-
+					case "host":
 						disableInput = true;
 						GameClient.createRoom(GameClient.serverAddress, onRoomJoin);
-					case 3: //OPTIONS
+					case "options":
 						disableInput = true;
 						FlxG.switchState(() -> new OnlineOptionsState());
-					case 4: //LEADERBOARD
+					case "leaderboard":
 						openSubState(new TopPlayerSubstate());
-					case 5: //MOD DOWNLOADER
+					case "mod downloader":
 						disableInput = true;
 						FlxG.switchState(() -> new DownloaderState());
 				}
@@ -588,7 +581,7 @@ class OnlineState extends MusicBeatState {
 
 		if (inputString.length >= 0) {
 			switch (itms[curSelected].toLowerCase()) {
-				case 0: // JOIN
+				case "join":
 					disableInput = true;
 					FlxG.stage.window.textInputEnabled = false;
 					if (daCoomCode.toLowerCase() == "adachi") {

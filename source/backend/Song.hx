@@ -12,6 +12,15 @@ import sys.FileSystem;
 
 import backend.Section;
 
+typedef StrumLine =
+{
+	var visible:Bool; //WIP Logic
+	var position:String; //WIP Logic
+	var characters:Array<String>;
+	var cpu:Bool;
+	var type:Int; //WIP Logic
+}
+
 typedef SwagSong =
 {
 	var song:String;
@@ -43,6 +52,9 @@ typedef SwagSong =
 
 	//psych engine 1.0
 	@:optional var format:String;
+
+	//codename engine legacy (WIP)
+	@:optional var strumLines:Array<StrumLine>;
 }
 
 class Song
@@ -133,62 +145,85 @@ class Song
 	}
 
 	public static function loadRawSong(jsonInput:String, ?folder:String):String {
-		var lastDashIndex = jsonInput.lastIndexOf('-');
-		var songName = jsonInput.substring(0, lastDashIndex);
-		var diffString = jsonInput.substring(lastDashIndex + 1);
+		try {
+			var isEvent:Bool = jsonInput.startsWith('events');
+			var lastDashIndex = jsonInput.lastIndexOf('-');
+			var difficulty = jsonInput.substring(lastDashIndex + 1);
+			var songName = isEvent ? PlayState.SONG.song : jsonInput.substring(0, lastDashIndex);
+			var chartsFolder:String = isEvent ? 'events' : 'charts/${difficulty}';
 
-		// Lol (Little fix ig)
-		if(Paths.formatToSongPath(diffString) == Paths.formatToSongPath(Difficulty.defaultDifficulty))
-			diffString == Difficulty.defaultDifficulty;
+			if (Paths.formatToSongPath(difficulty) == Paths.formatToSongPath(Difficulty.defaultDifficulty))
+				difficulty = Difficulty.defaultDifficulty; 
 
-		//check songs folder for cne charts
-		var isCneExists:Bool = Paths.fileExists('songs/${songName}/charts/${diffString}.json', TEXT, false);
+			var formattedFolder:String = Paths.formatToSongPath(folder);
+			var formattedSong:String = Paths.formatToSongPath(jsonInput);
+			var rawJson:String = null;
 
-		var rawJson = null;
+			#if MODS_ALLOWED
+			var modSongPath = Paths.modsJson('$formattedFolder/$formattedSong');
+			var modCneChartPath = Paths.modFolders('songs/$songName/$chartsFolder.json');
+			var modCneMetaPath = Paths.modFolders('songs/$songName/meta-$difficulty.json');
 
-		var formattedFolder:String = Paths.formatToSongPath(folder);
-		var formattedSong:String = Paths.formatToSongPath(jsonInput);
-		#if MODS_ALLOWED
-		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
-		var moddyCneChartFile:String = Paths.modFolders('songs/${songName}/charts/${diffString}.json');
-		var moddyCneMetaFile:String = Paths.modFolders('songs/${songName}/meta-${diffString}.json');
-		if (!FunkinFileSystem.exists(moddyCneMetaFile))
-			moddyCneMetaFile = Paths.modFolders('songs/${songName}/meta.json');
-	
-		if (FunkinFileSystem.exists(moddyCneChartFile)) {
-			var chart:Dynamic = Json.parse(FunkinFileSystem.getText(moddyCneChartFile).trim());
-			var meta:Dynamic = Json.parse(FunkinFileSystem.getText(moddyCneMetaFile).trim());
-			rawJson = Converters.parseCodenameChart(chart, meta);
-		} else if (FunkinFileSystem.exists(moddyFile)) {
-			rawJson = FunkinFileSystem.getText(moddyFile).trim();
-		}
-		#end
+			if (!FunkinFileSystem.exists(modCneMetaPath))
+				modCneMetaPath = Paths.modFolders('songs/$songName/meta.json');
 
-		if (rawJson == null) {
-			rawJson = FunkinFileSystem.getText(Paths.json(formattedFolder + '/' + formattedSong));
-			var cneChartFile = FunkinFileSystem.getText(Paths.getPath('songs/${songName}/charts/${diffString}.json', TEXT, null, true));
-			var cneMetaFile = Paths.getPath('songs/${songName}/meta-${diffString}.json', TEXT, null, true);
-			if (!FunkinFileSystem.exists(cneMetaFile))
-				cneMetaFile = Paths.getPath('songs/${songName}/meta.json', TEXT, null, true);
 
-			cneMetaFile = FunkinFileSystem.getText(cneMetaFile);
+			if (FunkinFileSystem.exists(modCneChartPath)) {
+				var chartData = Json.parse(FunkinFileSystem.getText(modCneChartPath).trim());
+				var metaData = Json.parse(FunkinFileSystem.getText(modCneMetaPath).trim());
+				rawJson = Converters.parseCodenameChart(chartData, metaData, isEvent);
+			} else if (FunkinFileSystem.exists(modSongPath)) {
+				rawJson = FunkinFileSystem.getText(modSongPath).trim();
+			}
+			#end
 
-			if (rawJson == null && cneChartFile == null) {
-				throw new haxe.Exception("Missing file: " + Paths.json(formattedFolder + '/' + formattedSong));
-			} else if (rawJson == null && cneChartFile != null) {
-				cneChartFile = Converters.parseCodenameChart(Json.parse(cneChartFile), Json.parse(cneMetaFile));
-				rawJson = cneChartFile;
+			if (rawJson == null) {
+				var baseSongPath = Paths.json('$formattedFolder/$formattedSong');
+				var baseCneChartPath = Paths.getPath('songs/$songName/$chartsFolder.json', TEXT, null, true);
+				var baseCneMetaPath = Paths.getPath('songs/$songName/meta-$difficulty.json', TEXT, null, true);
+
+				if (!FunkinFileSystem.exists(baseCneMetaPath))
+					baseCneMetaPath = Paths.getPath('songs/$songName/meta.json', TEXT, null, true);
+
+				if (FunkinFileSystem.exists(baseCneChartPath)) {
+					var chartData = Json.parse(FunkinFileSystem.getText(baseCneChartPath));
+					var metaData = Json.parse(FunkinFileSystem.getText(baseCneMetaPath));
+					rawJson = Converters.parseCodenameChart(chartData, metaData, isEvent);
+				} else if (FunkinFileSystem.exists(baseSongPath)) {
+					rawJson = FunkinFileSystem.getText(baseSongPath);
+				}
+
+				if (rawJson == null)
+					throw new haxe.Exception('Missing file: $baseSongPath');
+
+				rawJson = rawJson.trim();
 			}
 
-			rawJson = rawJson.trim();
-		}
+			while (rawJson != null && !rawJson.endsWith("}")) {
+				rawJson = rawJson.substr(0, rawJson.length - 1);
+			}
 
-		while (!rawJson.endsWith("}")) {
-			rawJson = rawJson.substr(0, rawJson.length - 1);
-			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
-		}
+			return rawJson;
 
-		return rawJson;
+		} catch(e:Dynamic) { 
+			trace('Error loading raw song: $e');
+			//this should fix no data problem.
+			return "
+				{
+				  'events': [],
+				  'song': '',
+				  'notes': [],
+				  'bpm': 0,
+				  'needsVoices': true,
+				  'speed': 1,
+				  'player1': '',
+				  'player2': '',
+				  'gfVersion': '',
+				  'stage': '',
+				  'format': 'psych_legacy'
+				}
+			";
+		}
 	}
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
@@ -229,7 +264,7 @@ class Song
 				return parsed;
 			}
 			
-			parsed.song.format = 'psych_legacy';
+			parsed.song.format ??= 'psych_legacy';
 			return parsed.song;
 		}
 		

@@ -8,8 +8,8 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	var boyfriend:Character = null;
 	public function new()
 	{
-		title = Language.getText('Graphics and Performance');
-		rpcTitle = Language.getText('Graphics Settings Menu'); //for Discord Rich Presence
+		title = 'Performance';
+		rpcTitle = 'Performance Settings Menu'; //for Discord Rich Presence
 
 		boyfriend = new Character(840, 170, 'bf', true);
 		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.75));
@@ -19,22 +19,22 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		boyfriend.visible = false;
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
-		var option:Option = new Option(Language.getText('Low Quality'), //Name
-			Language.getText('If checked, disables some background details,\ndecreases loading times and improves performance.'), //Description
+		var option:Option = new Option('Low Quality', //Name
+			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
 			'lowQuality', //Save data variable name
 			'bool'); //Variable type
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Anti-Aliasing'),
-			Language.getText('If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.'),
+		var option:Option = new Option('Anti-Aliasing',
+			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',
 			'antialiasing',
 			'bool');
 		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 		antialiasingOption = optionsArray.length-1;
 
-		var option:Option = new Option(Language.getText('Shaders'), //Name
-			Language.getText("If unchecked, disables shaders.\nIt's used for some visual effects, and also CPU intensive for weaker devices."), //Description
+		var option:Option = new Option('Shaders', //Name
+			"If unchecked, disables shaders.\nIt's used for some visual effects, and also CPU intensive for weaker devices.", //Description
 			'shaders',
 			'bool');
 		addOption(option);
@@ -47,8 +47,8 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 
-		var option:Option = new Option(Language.getText('Framerate'),
-			Language.getText("Pretty self explanatory, isn't it?"),
+		var option:Option = new Option('Framerate',
+			"Pretty self explanatory, isn't it?",
 			'framerate',
 			'int');
 		addOption(option);
@@ -58,28 +58,28 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 
-		var option:Option = new Option(Language.getText('Max FPS'), //Name
-			Language.getText("If checked, the FPS limit will be set to 1000.\nThis setting makes the input timing more accurate, but in cost of minor graphical issues."), //Description
+		var option:Option = new Option('Max FPS', //Name
+			"If checked, the FPS limit will be set to 1000.\nThis setting makes the input timing more accurate, but in cost of minor graphical issues.", //Description
 			'unlockFramerate',
 			'bool');
 		option.onChange = onChangeFramerate;
 		addOption(option);
 		#end
 
-		var option:Option = new Option(Language.getText('Disable Freeplay Icons'), //Name
-			Language.getText("If checked, freeplay menu song icons will not be shown, slightly decreases loading times."), //Description
+		var option:Option = new Option('Disable Text Item Icons', //Name
+			"If checked, menu text item icons will not be loaded, greatly decreases loading times.", //Description
 			'disableFreeplayIcons',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Fast Text Render'), //Name
-			Language.getText("If checked, resource intensive texts will be render with the default HaxeFlixel font, greatly improving loading times."), //Description
+		var option:Option = new Option('Disable Text Item Alphabet', //Name
+			"If checked, various menu elements will be rendered using the pixel font.", //Description
 			'disableFreeplayAlphabet',
 			'bool');
 		addOption(option);
 
-		var option:Option = new Option(Language.getText('Combo Stacking'),
-			Language.getText("If unchecked, Ratings and Combo won't stack, saving on System Memory and making them easier to read"),
+		var option:Option = new Option('Combo Stacking',
+			"If unchecked, Ratings and Combo won't stack, saving on System Memory a little and making them easier to read",
 			'comboStacking',
 			'bool');
 		addOption(option);
