@@ -333,7 +333,12 @@ class PlayState extends MusicBeatState
 	public var camZoomingStrength:Int = 1;
 	public var camZoomingInterval:Int = 4;
 	public var maxCamZoom:Float = 1.35;
-
+	
+	#if TURKIYE_BUILD
+	// P.E.T Filigran değişkenleri
+	var petLogo:FlxSprite;
+	var petText:FlxText;
+	#end
 	private var curSong:String = "";
 
 	public var gfSpeed:Int = 1;
@@ -2014,7 +2019,13 @@ class PlayState extends MusicBeatState
 		orderOffset = 2;
 
 		super.create();
-
+		
+		#if TURKIYE_BUILD
+		// PET WATERMARK CREATE
+		if (ClientPrefs.data.petwatermark) {
+		createPETWatermark();
+		}
+		#end
 		Paths.clearUnusedMemory();
 	}
 
@@ -6749,7 +6760,14 @@ class PlayState extends MusicBeatState
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
 		}
-
+		
+		#if TURKIYE_BUILD
+		if (ClientPrefs.data.petwatermark && petLogo != null && curBeat % 2 == 0) {
+			petLogo.scale.set(0.45, 0.45);
+			FlxTween.tween(petLogo.scale, {x: 0.4, y: 0.4}, 0.5, {ease: FlxEase.circOut});
+		}
+		#end
+		
 		// if (generatedMusic)
 		// 	notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
@@ -6788,6 +6806,48 @@ class PlayState extends MusicBeatState
 		if (scripts != null) scripts.call('beatHit', [curBeat]); //why not
 		#end
 	}
+	
+	#if TURKIYE_BUILD
+	function createPETWatermark():Void {
+		var logoPath:String = 'pet/petlogos/';
+		switch (ClientPrefs.data.petwatermarklogo.toUpperCase()) {
+			case 'V1':
+				logoPath += 'V1';
+			case 'V2':
+				logoPath += 'V2';
+			case 'V2U':
+				logoPath += 'V2U';
+			default: // ONLINE
+				logoPath += 'online';
+		}
+		// P.E.T Logo
+		petLogo = new FlxSprite(-200, 20);
+		try {
+			petLogo.loadGraphic(Paths.image(logoPath));
+			petLogo.setGraphicSize(Std.int(petLogo.width * 0.4));
+			petLogo.updateHitbox();
+			petLogo.antialiasing = ClientPrefs.data.antialiasing;
+			petLogo.cameras = [camHUD];
+			add(petLogo);
+		} catch (e:Dynamic) {
+			return;
+		}
+		try {
+			petText = new FlxText(-200, 35, 0, "Psych Engine Türkiye Online V2");
+			petText.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, LEFT, OUTLINE, FlxColor.BLACK);
+			petText.borderSize = 2;
+			petText.cameras = [camHUD];
+			add(petText);
+		} catch (e:Dynamic) {
+			return; // Ol Lütfen
+		}
+		// P.E.T Logo Tween
+		if (petLogo != null && petText != null) {
+			FlxTween.tween(petLogo, {x: 10}, 1.5, {ease: FlxEase.elasticOut});
+			FlxTween.tween(petText, {x: 10 + 75}, 1.5, {ease: FlxEase.elasticOut});
+		}
+	}
+	#end
 
 	public function characterBopper(beat:Int):Void {
 		if (gf != null) {

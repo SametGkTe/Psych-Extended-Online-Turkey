@@ -19,6 +19,15 @@ import states.TitleState;
 	public var disableRGBNotes:Bool = false; //new way to handle RGB notes (currently it does not support skins)
 	public var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]; //for testing only
 	public var lang:String = "EN";
+	
+	/* Psych Engine Türkiye */
+	#if TURKIYE_BUILD
+	public var petwatermark:Bool = true;
+	public var petloadingscreen:Bool = true;
+	public var petwatermarklogo:String = 'ONLINE';
+	public var petloadingscreenimage:String = 'ONLINE';
+	public var disableIntroVideo:Bool = false;
+	#end
 
 	/* Mobile */
 	public var wideScreen:Bool = false;

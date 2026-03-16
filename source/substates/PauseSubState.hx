@@ -421,7 +421,7 @@ class PauseSubState extends MusicBeatSubstate
 						'Playback Rate',
 						'Run Script',
 						'Swap Sides',
-						'Chart Editor',
+						'Chart Edtor',
 						'Character Editor',
 						'Position Debug',
 						'Swing Mode'
@@ -442,7 +442,7 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Position Debug': 
 					PlayState.instance.debugPoser.editMode = !PlayState.instance.debugPoser.editMode;
 					close();
-				case 'Chart Editor':
+				case 'Chart Edtor':
 					PlayState.instance.openChartEditor();
 					close();
 				case 'Character Editor':
